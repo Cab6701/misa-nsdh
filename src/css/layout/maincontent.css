@@ -1,0 +1,39 @@
+#setting-user .body-custom {
+    width: calc(100vw - 194px);
+    overflow: auto;
+}
+
+.body-content {
+    padding: 16px 24px;
+}
+
+#setting-user .header-custom {
+    margin: 0;
+}
+
+.content-main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#setting-user .content-main {
+    height: 100%!important;
+}
+
+.resize1 {
+    transform: none!important;
+}
+
+.dx-resizable {
+    display: block;
+    position: relative;
+}
+
+.input-contain {
+    height: 36px;
+    width: 240px;
+}

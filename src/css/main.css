@@ -1,0 +1,33 @@
+@import url(../css/layout/header.css);
+@import url(../css/components/icon.css);
+@import url(../css/components/input.css);
+@import url(../css/layout/navbar.css);
+@import url(../css/layout/maincontent.css);
+@import url(../css/components/button.css);
+* {
+    margin: 0;
+    padding: 0;
+    /* background: #f4f5f8; */
+    /* overflow-x: auto; */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Misa Fonts Regular;
+    font-size: 14px;
+}
+
+@font-face {
+    font-family: Misa Fonts Regular;
+    src: url(../assets/fonts/notosans-regular.2cb88a13.woff2);
+}
+
+@font-face {
+    font-family: Misa Fonts Bold;
+    src: url(../assets/fonts/notosans-bold.3ede5aff.woff2);
+}
+
+@font-face {
+    font-family: Misa Fonts Italic;
+    src: url(../assets/fonts/notosans-italic.1c1aaac9.woff2);
+}

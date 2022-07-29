@@ -1,0 +1,37 @@
+.main-right {
+    transition: padding .2s;
+    height: calc(100vh - 56px);
+    background-color: #f5f8f9;
+}
+
+.navbar {
+    min-width: 200px;
+    height: 100%;
+    padding-top: 16px;
+    background: white;
+}
+
+.item-activated {
+    background-color: #f3fbfd;
+}
+
+.item-activated .icon-tab {
+    background-color: #02a3ec!important;
+}
+
+.setting-tab-item {
+    height: 44px;
+    padding-left: 24px;
+}
+
+.setting-tab-item .icon-tab {
+    margin-right: 8px;
+}
+
+.setting-tab-item .name-tab {
+    line-height: 44px;
+}
+
+.item-activated .name-tab {
+    color: #02a3ec!important;
+}

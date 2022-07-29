@@ -1,0 +1,27 @@
+.global-search input {
+    border: none;
+    outline: none;
+    margin-right: 24px;
+}
+
+.ms-input {
+    height: 100%;
+    border: 1px solid #e7e8e9;
+    border-radius: 3.5px;
+    background: #fff;
+    min-height: 36px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ms-input:hover {
+    border: 1px solid #20a3ec;
+}
+
+.ms-input .ms-input-item {
+    height: 100%;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0 12px;
+}

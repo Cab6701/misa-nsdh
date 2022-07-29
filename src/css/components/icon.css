@@ -1,0 +1,80 @@
+.mi-search {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -192px 0;
+    background-color: #9fa4b4!important;
+}
+
+.notify {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 32px;
+    margin-right: 24px;
+    height: 32px;
+    font-size: 14px;
+    font-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 2px;
+    background-image: url(../../assets/icon-notification-dark-thick.svg);
+}
+
+.myavt {
+    background: url(../../assets/avt.jpg) no-repeat;
+}
+
+.icon-run-process {
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -136px -97px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff!important;
+}
+
+.icon-plus-white {
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -240px 0;
+    width: 24px;
+    height: 24px;
+    background-color: #fff!important;
+}
+
+.icon-employee {
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -336px -48px;
+    width: 24px;
+    height: 24px;
+    background-color: #65696e!important;
+}
+
+.icon-protect {
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -48px -72px;
+    width: 24px;
+    height: 24px;
+    background-color: #65696e!important;
+}
+
+.icon-multiple-user {
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -72px -24px;
+    width: 24px;
+    height: 24px;
+    background-color: #65696e!important;
+}
+
+.icon-share-link {
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -96px -72px;
+    width: 24px;
+    height: 24px;
+    background-color: #65696e!important;
+}
