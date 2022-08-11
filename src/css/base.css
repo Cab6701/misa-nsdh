@@ -98,6 +98,10 @@
     margin-right: 16px!important;
 }
 
+.pos-relative {
+    position: relative;
+}
+
 .m-0 {
     margin: 0!important;
 }
@@ -160,4 +164,8 @@
 
 .justify-flexend {
     justify-content: flex-end!important;
+}
+
+.text-bold {
+    font-weight: 700;
 }

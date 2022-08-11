@@ -1,6 +1,5 @@
 #setting-user .body-custom {
     width: calc(100vw - 194px);
-    overflow: auto;
     padding: 16px 24px;
 }
 
@@ -46,7 +45,6 @@
     height: 100%;
     width: 100%;
     position: relative;
-    overflow: hidden;
     text-indent: 0;
     border: none;
 }
@@ -240,4 +238,48 @@
     -ms-user-select: none;
     user-select: none;
     height: 24px;
+}
+
+
+/*CSS Background-color status*/
+
+.working {
+    color: rgb(102, 209, 129);
+}
+
+.working .dot {
+    background-color: rgb(102, 209, 129);
+}
+
+.wcf {
+    color: #f39619;
+}
+
+.wcf .dot {
+    background: #f39619;
+}
+
+.notactive {
+    color: #13b2d8;
+}
+
+.notactive .dot {
+    background: #13b2d8;
+}
+
+.deactive {
+    color: #616767;
+}
+
+.deactive .dot {
+    background: #616767;
+}
+
+.ms-popup--footer {
+    display: flex;
+    justify-content: flex-end;
+    background: #f2f2f2;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    height: 60px;
 }

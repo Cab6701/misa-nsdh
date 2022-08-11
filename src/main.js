@@ -12,6 +12,8 @@ import TheUserDetail from './components/layout/TheUserDetail.vue'
 import EditPopup from "./components/popup/EditPopup.vue";
 import AddNew from "./components/popup/AddNew.vue"
 import DropDown from "./components/base/DropDown.vue"
+import ProfileImg from "./components/base/ProfileImg.vue";
+
 
 import {
     DxDataGrid,
@@ -32,6 +34,7 @@ app.component("DxPopup", DxPopup);
 app.component("DropDown", DropDown);
 app.component("DxSortable", DxSortable);
 app.component("AddNew", AddNew);
+app.component("ProfileImg", ProfileImg);
 app.component("EditPopup", EditPopup);
 app.component("DxScrollView", DxScrollView);
 app.component("DxSelectBox", DxSelectBox);

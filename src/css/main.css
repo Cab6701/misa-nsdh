@@ -11,11 +11,11 @@
 @import url(../css/components/checkbox.css);
 @import url(../css/components/addnew.css);
 @import url(../css/base/dropdown.css);
+@import url(../css/popup/deletepopup.css);
 * {
     margin: 0;
     padding: 0;
     /* background: #f4f5f8; */
-    /* overflow-x: auto; */
     box-sizing: border-box;
 }
 
@@ -45,18 +45,6 @@ body {
 
 ::-webkit-scrollbar-track {
     background: #fff;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #9ea5a6!important;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cdd3d6;
-    width: 6px;
-    height: 6px;
-    border-radius: 2px;
 }
 
 ::-webkit-scrollbar {

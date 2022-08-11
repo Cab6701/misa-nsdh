@@ -266,3 +266,12 @@
     mask-position: -488px -1px;
     background-color: #686c7b!important;
 }
+
+#setting-user .dot {
+    position: absolute!important;
+    width: 8px!important;
+    height: 8px!important;
+    border-radius: 50%!important;
+    left: 0!important;
+    top: 5px!important;
+}

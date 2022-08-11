@@ -1,0 +1,14 @@
+.popup-notification {
+    z-index: 333!important;
+}
+
+.popup-style {
+    background: rgb(255, 255, 255)!important;
+    width: 415px!important;
+    min-width: 500px!important;
+}
+
+.general {
+    overflow: auto;
+    height: calc(100% - 60px);
+}

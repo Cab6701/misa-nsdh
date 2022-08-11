@@ -51,3 +51,9 @@
     color: #171B2A;
     font-weight: 500;
 }
+
+.btn-delete {
+    background-color: #e61d1d;
+    color: #fff;
+    border: 1px solid #e61d1d;
+}
