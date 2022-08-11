@@ -1,32 +1,7 @@
 <template>
   <div class="main-right flex-column">
     <div class="flex" style="height: 100%; margin-left: -6px">
-      <div class="flex flex-col navbar">
-        <div
-          class="
-            setting-tab-item
-            flex
-            align-items-center
-            cursor-pointer
-            item-activated
-          "
-        >
-          <div class="icon-tab icon-employee"></div>
-          <div class="name-tab">Người dùng</div>
-        </div>
-        <div class="setting-tab-item flex align-items-center cursor-pointer">
-          <div class="icon-tab icon-protect"></div>
-          <div class="name-tab">Vai trò</div>
-        </div>
-        <div class="setting-tab-item flex align-items-center cursor-pointer">
-          <div class="icon-tab icon-multiple-user"></div>
-          <div class="name-tab">Nhóm người dùng</div>
-        </div>
-        <div class="setting-tab-item flex align-items-center cursor-pointer">
-          <div class="icon-tab icon-share-link"></div>
-          <div class="name-tab">Kết nối</div>
-        </div>
-      </div>
+      <TheNavbar/>
       <div class="content-setting w-full">
         <div id="setting-user">
           <div class="h-full container body-custom body-content">
@@ -933,6 +908,7 @@
 import axios from "axios";
 import Benum from "../../js/enums.js";
 import MsButton from "../base/MsButton.vue";
+import TheNavbar from "./TheNavbar.vue";
 export default {
   component: {
     Benum,
@@ -1108,7 +1084,7 @@ export default {
       console.log(error);
     }
   },
-  components: { MsButton },
+  components: { MsButton, TheNavbar },
 };
 </script>
 
