@@ -9,12 +9,11 @@
 
 import TheHeader from './components/layout/TheHeader.vue'
 import TheContent from './components/layout/TheContent.vue'
-
 export default {
   name: 'App',
   components: {
     TheHeader,
-    TheContent
+    TheContent,
 }
 }
 </script>

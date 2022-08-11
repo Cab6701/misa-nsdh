@@ -43,6 +43,15 @@
     background-color: #fff!important;
 }
 
+.icon-plus-blue {
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -240px 0;
+    width: 24px;
+    height: 24px;
+    background-color: #02a3ec!important;
+}
+
 .icon-employee {
     -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
     -webkit-mask-repeat: no-repeat;
@@ -77,4 +86,183 @@
     width: 24px;
     height: 24px;
     background-color: #65696e!important;
+}
+
+.mi-setting {
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -264px -144px;
+    width: 24px;
+    height: 24px;
+    background-color: #606474!important;
+    cursor: pointer;
+}
+
+.ms-icon-container {
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -216px -24px;
+    width: 24px;
+    height: 24px;
+    background-color: #606474!important;
+    cursor: pointer;
+}
+
+.mi-pencil {
+    width: 24px!important;
+    height: 24px!important;
+    background: url(../../assets/Icon.de5bb0db.svg) -216px 0 no-repeat!important;
+}
+
+.icon-delete,
+.icon-delete-custom {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -moz-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -ms-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -o-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-position: -264px 0;
+    -moz-mask-position: -264px 0;
+    -ms-mask-position: -264px 0;
+    -o-mask-position: -264px 0;
+    mask-position: -264px 0;
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.icon-delete-custom {
+    background-color: #de1e1e!important;
+}
+
+.mi-close,
+.mi-close-2,
+.mi-close-grey {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -moz-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -ms-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -o-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-position: -216px -24px;
+    -moz-mask-position: -216px -24px;
+    -ms-mask-position: -216px -24px;
+    -o-mask-position: -216px -24px;
+    mask-position: -216px -24px;
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.mi-pencil {
+    width: 24px!important;
+    height: 24px!important;
+    background: url(../../assets/Icon.de5bb0db.svg) -216px 0 no-repeat!important;
+}
+
+.mi-close,
+.mi-close-2 {
+    background-color: #686c7b!important;
+}
+
+.mi-close-5 {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -moz-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -ms-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -o-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-position: -96px -72px;
+    -moz-mask-position: -96px -72px;
+    -ms-mask-position: -96px -72px;
+    -o-mask-position: -96px -72px;
+    mask-position: -96px -72px;
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-color: #686c7b!important;
+}
+
+.mi-chevron-down,
+.mi-chevron-down-black {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -moz-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -ms-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -o-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-position: -144px -24px;
+    -moz-mask-position: -144px -24px;
+    -ms-mask-position: -144px -24px;
+    -o-mask-position: -144px -24px;
+    mask-position: -144px -24px;
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.mi-chevron-down {
+    background-color: #686c7b!important;
+}
+
+.mi-chevron-right {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -moz-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -ms-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -o-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    -webkit-mask-position: -96px -24px;
+    -moz-mask-position: -96px -24px;
+    mask-repeat: no-repeat;
+    background-color: #686c7b!important;
+}
+
+.mi-chevron-left {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -moz-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -ms-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -o-mask-image: url(../../assets/Icon.de5bb0db.svg);
+    mask-image: url(../../assets/Icon.de5bb0db.svg);
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    -webkit-mask-position: -72px -24px;
+    background-color: #686c7b!important;
+}
+
+.mi-drag {
+    -webkit-mask-image: url(../../assets/Icon_process.4ac8c2f6.svg);
+    -moz-mask-image: url(../../assets/Icon_process.4ac8c2f6.svg);
+    -ms-mask-image: url(../../assets/Icon_process.4ac8c2f6.svg);
+    -o-mask-image: url(../../assets/Icon_process.4ac8c2f6.svg);
+    mask-image: url(../../assets/Icon_process.4ac8c2f6.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    -webkit-mask-position: -488px -1px;
+    mask-position: -488px -1px;
+    background-color: #686c7b!important;
 }

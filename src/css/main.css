@@ -4,6 +4,13 @@
 @import url(../css/layout/navbar.css);
 @import url(../css/layout/maincontent.css);
 @import url(../css/components/button.css);
+@import url(../css/components/selectbox.css);
+@import url(../css/components/popupcolumn.css);
+@import url(../css/layout/userdetail.css);
+@import url(../css/components/editpopup.css);
+@import url(../css/components/checkbox.css);
+@import url(../css/components/addnew.css);
+@import url(../css/base/dropdown.css);
 * {
     margin: 0;
     padding: 0;
@@ -30,4 +37,33 @@ body {
 @font-face {
     font-family: Misa Fonts Italic;
     src: url(../assets/fonts/notosans-italic.1c1aaac9.woff2);
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1!important;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9ea5a6!important;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cdd3d6;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }

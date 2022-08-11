@@ -3,3 +3,51 @@
     color: #fff;
     border: 1px solid #02a3ec;
 }
+
+.btn-update-detail {
+    background-color: #fff;
+    color: #ff6333;
+    border: 1px solid #f90;
+}
+
+.btn-update-detail:hover {
+    background-color: #fff;
+    color: #f90;
+    border: 1px solid #f90;
+}
+
+.btn-cancel {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    color: #1e1e1e;
+}
+
+.btn-cancel:hover {
+    background-color: #dbf4ff;
+    color: #02a3ec;
+    border: 1px solid #eaebef;
+}
+
+.ms-button-newrow {
+    background-color: #fff;
+    color: #02a3ec;
+    border: 1px solid #02a3ec;
+    border: none;
+}
+
+.btn-select-pagesize {
+    flex-direction: row-reverse;
+    padding: 0 8px 0 12px !important;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-select-pagesize .ms-button--icon {
+    margin-left: 4px !important;
+    margin-right: 0 !important;
+}
+
+.btn-select-pagesize .ms-button-text {
+    color: #171B2A;
+    font-weight: 500;
+}

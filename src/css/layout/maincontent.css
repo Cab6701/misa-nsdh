@@ -1,6 +1,7 @@
 #setting-user .body-custom {
     width: calc(100vw - 194px);
     overflow: auto;
+    padding: 16px 24px;
 }
 
 .body-content {
@@ -36,4 +37,207 @@
 .input-contain {
     height: 36px;
     width: 240px;
+}
+
+
+/*Grid Container*/
+
+.grid-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-indent: 0;
+    border: none;
+}
+
+#gridContainer {
+    height: 440px;
+}
+
+.dx-datagrid-text-content {
+    font-weight: 700;
+    letter-spacing: .14px;
+    color: #171b2a;
+    line-height: 48px;
+}
+
+.grid-container .dx-datagrid .dx-datagrid-headers .dx-header-row>td {
+    padding: 0 16px;
+    position: relative!important;
+    background: #fff!important;
+}
+
+.grid-container .dx-datagrid-headers .dx-datagrid-table .dx-row>td {
+    border-bottom: none;
+}
+
+.dx-datagrid-content .dx-datagrid-table .dx-row>td:first-child,
+.dx-datagrid-content .dx-datagrid-table .dx-row>tr>td:first-child {
+    border-left: 0;
+}
+
+.grid-container .dx-datagrid-headers .dx-datagrid-table .dx-row>td:not(:last-child):before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 0;
+    background-color: #e7e8e9;
+    width: 1px;
+    height: 20px;
+    z-index: 1;
+}
+
+.grid-container .dx-datagrid-content .dx-datagrid-table .dx-row>td:first-child,
+.grid-container .dx-datagrid-content .dx-datagrid-table .dx-row>tr>td:first-child,
+.grid-container .dx-datagrid .dx-datagrid-headers .dx-header-row>td {
+    border-left: none;
+}
+
+.grid-container .dx-datagrid-headers .dx-datagrid-table .dx-row>td {
+    border-bottom: none;
+}
+
+.grid-container .dx-datagrid .dx-column-lines>td {
+    border-right: none;
+    border-left: none;
+}
+
+.dx-datagrid-headers .dx-datagrid-table .dx-row>td {
+    border-bottom: 1px solid #ddd;
+}
+
+.dx-row .dx-column-lines .dx-header-row {
+    border-bottom: 1px solid #e7e8e9;
+}
+
+.grid-container .dx-datagrid .dx-row-lines {
+    padding: 0 10px;
+}
+
+.grid-container .dx-datagrid-rowsview .dx-row {
+    border-bottom: none!important;
+    border-top: none!important;
+    padding: 0 10px;
+}
+
+.dx-datagrid .dx-row>td {
+    padding: 0 16px;
+    height: 48px!important;
+    vertical-align: middle!important;
+    color: #171b2a;
+    text-align: left!important;
+}
+
+.grid-container .dx-datagrid .dx-row-lines>td {
+    border-bottom: 1px solid #e7e8e9;
+}
+
+#setting-user .su-filter {
+    margin-left: auto;
+}
+
+.dx-data-row.dx-state-hover>td {
+    background-color: #dbf4ff!important;
+}
+
+.dx-data-row.dx-state-hover>td:last-child {
+    cursor: pointer;
+    position: sticky;
+    right: 0;
+    background-color: #dbf4ff !important;
+    /* display: block; */
+}
+
+.icon-hidden {
+    display: none;
+}
+
+.dx-data-row.dx-state-hover>td:last-child .icon-hidden {
+    display: block;
+}
+
+.style-button {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-comand-wrap:hover {
+    border-radius: 50%;
+    background-color: #dadce3;
+}
+
+.button-comand-wrap {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container .paging {
+    border-top: none;
+    padding: 10px 0!important;
+    height: 56px;
+    z-index: 8;
+    position: relative;
+    margin: 0 10px 8px 10px;
+    background-color: #f9fafc!important;
+}
+
+.grid-navigation {
+    display: flex;
+    color: #171b2a;
+}
+
+.grid-navigation .page-total {
+    flex: 1;
+    line-height: 40px;
+    margin-left: 16px;
+}
+
+.page-info {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px;
+}
+
+.page-next-preview {
+    width: 70px;
+    height: 40px;
+    display: flex;
+    margin-right: 16px;
+}
+
+.page-paging-icon {
+    justify-content: center;
+    flex-direction: column!important;
+    display: flex;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 0px;
+    padding: 0px;
+    margin-bottom: 16px;
+}
+
+.ms-row {
+    clear: both;
+    flex-flow: wrap;
+}
+
+.ms-pagination--nav {
+    display: flex;
+    align-items: center;
+}
+
+.ms-bottom-nav {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 24px;
 }

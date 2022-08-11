@@ -1,0 +1,39 @@
+.ms-select-box {
+    min-width: 204px !important;
+    width: 204px;
+    font-size: 14px;
+    font-family: Misa Fonts Regular;
+}
+
+
+/* hover đổi màu border*/
+
+.dx-texteditor.dx-state-hover {
+    border-color: #02a3ec;
+}
+
+
+/* không đổi màu icon down  */
+
+.dx-dropdowneditor.dx-state-hover:not(.dx-custom-button-hovered) .dx-dropdowneditor-icon {
+    background-color: transparent!important;
+}
+
+.dx-dropdowneditor.dx-state-focused:not(.dx-custom-button-hovered) .dx-dropdowneditor-icon {
+    background-color: transparent!important;
+}
+
+.dx-dropdowneditor.dx-state-active:not(.dx-custom-button-hovered) .dx-dropdowneditor-icon {
+    background-color: transparent!important;
+}
+
+
+/* li hover */
+
+.dx-selectbox-popup-wrapper .dx-list-item.dx-state-hover {
+    background-color: #f3fbfd !important;
+    color: #02a3ec !important;
+}
+
+
+/* padding popup content */

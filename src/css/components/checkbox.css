@@ -1,0 +1,66 @@
+.ms-checkbox .ms-checkbox--input {
+    height: inherit;
+}
+
+.ms-checkbox--input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.ms-checkbox .checkmark {
+    top: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 26px;
+    width: 22px;
+}
+
+.icon-square-uncheck {
+    width: 23px;
+    -webkit-mask-position: -532px 2px;
+    -moz-mask-position: -532px 2px;
+    -ms-mask-position: -532px 2px;
+    -o-mask-position: -532px 2px;
+    mask-position: -532px 2px;
+    background-color: #686c7b!important;
+}
+
+.icon-square-check-primary,
+.icon-square-uncheck {
+    height: 24px;
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -moz-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -ms-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -o-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    -moz-mask-repeat: no-repeat;
+    -ms-mask-repeat: no-repeat;
+    -o-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.icon-square-check.icon-square-uncheck {
+    -webkit-mask-position: -512px 2px;
+    -webkit-mask-image: url(../../assets/Icon_process.1401a69c.svg);
+    -webkit-mask-repeat: no-repeat;
+    background-color: #02a3ec!important;
+}
+
+.label-role-checkbox {
+    margin-top: -5px;
+}
+
+.ms-checkbox-container {
+    padding: 1px 0 0 32px;
+    position: relative;
+    margin-bottom: 4px;
+    cursor: pointer;
+    height: 100%;
+}

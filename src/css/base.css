@@ -13,11 +13,13 @@
 .flex-c-m {
     justify-content: center;
     align-items: center;
+    min-width: max-content;
 }
 
 .flex-m {
     display: flex;
     align-items: center;
+    min-width: max-content;
 }
 
 .flex-r-m {
@@ -90,4 +92,72 @@
 
 .bg-white {
     background: #fff;
+}
+
+.m-r-16 {
+    margin-right: 16px!important;
+}
+
+.m-0 {
+    margin: 0!important;
+}
+
+.p-b-8 {
+    padding-bottom: 8px!important;
+}
+
+.p-b-12 {
+    padding-bottom: 12px!important;
+}
+
+.m-r-8 {
+    margin-right: 8px!important;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.p-l-16 {
+    padding-left: 16px!important;
+}
+
+.p-0-16 {
+    padding: 0 16px!important;
+}
+
+.m-r-12 {
+    margin-right: 12px!important;
+}
+
+.m-t-4 {
+    margin-top: 4px!important;
+}
+
+.m-b-4 {
+    margin-bottom: 4px!important;
+}
+
+.m-l-4 {
+    margin-left: 4px!important;
+}
+
+.ms-col {
+    float: left;
+}
+
+.center {
+    display: flex;
+}
+
+.left {
+    align-items: left;
+}
+
+.center {
+    align-items: center;
+}
+
+.justify-flexend {
+    justify-content: flex-end!important;
 }

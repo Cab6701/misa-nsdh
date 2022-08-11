@@ -1,0 +1,206 @@
+.con-ms-popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.ms-popup--background {
+    width: 100%;
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+    opacity: 1;
+}
+
+.con-ms-popup .ms-popup {
+    position: relative;
+    z-index: 100;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    max-height: calc(100% - 4px);
+    border-radius: 6px;
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 10%);
+    background: #fff;
+    -webkit-animation: rebound .3s;
+    animation: rebound .3s;
+    overflow: visible;
+}
+
+.ms-popup--header,
+.ms-popup--subheader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px 8px;
+    position: relative;
+}
+
+.ms-popup--header {
+    padding: 24px;
+    padding-bottom: 0;
+    padding-top: 18px!important;
+    min-height: 53px!important;
+}
+
+.ms-popup--title {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    min-height: 29px!important;
+}
+
+.ms-popup--close-root {
+    position: relative;
+    right: -8px;
+}
+
+.ms-popup--close {
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 24px;
+}
+
+.btn-icon-1 {
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    width: 36px!important;
+    height: 36px!important;
+    border-radius: 50%!important;
+    border: none!important;
+    outline: none!important;
+}
+
+.ms-popup--close:hover {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 10%);
+}
+
+.btn-icon-1:hover {
+    background-color: #eff1f6!important;
+}
+
+.ms-popup--content {
+    padding: 24px;
+}
+
+.required {
+    color: red!important;
+    padding-left: 2px;
+}
+
+span.required {
+    color: #e54848!important;
+}
+
+label {
+    text-align: left;
+    display: flex;
+    margin-bottom: 4px;
+}
+
+label {
+    outline: none;
+}
+
+label {
+    font-weight: 500;
+}
+
+label {
+    text-align: left!important;
+    display: flex!important;
+    align-items: center!important;
+}
+
+.checkbox-detail {
+    margin-left: 0%;
+    width: 50%;
+}
+
+.ms-col label {
+    color: #212121;
+}
+
+
+/* .container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 1px 0 0 32px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 100%;
+} */
+
+.con-slot-label {
+    text-overflow: ellipsis!important;
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical!important;
+    font-weight: 400;
+}
+
+.con-slot-label {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 26px;
+    width: 22px;
+}
+
+.icon-square-check-primary {
+    width: 20px;
+    -webkit-mask-position: -512px 2px;
+    -moz-mask-position: -512px 2px;
+    -ms-mask-position: -512px 2px;
+    -o-mask-position: -512px 2px;
+    mask-position: -512px 2px;
+    background-color: #02a3ec!important;
+}
+
+.ms-checkbox:focus .checkmark:not(.disabled),
+.ms-checkbox:focus .icon-square-check-primary.checkmark,
+.ms-checkbox:hover .checkmark:not(.disabled),
+.ms-checkbox:hover .icon-square-check-primary.checkmark {
+    border-radius: 50%;
+    background-color: #02a3ec!important;
+}
+
+.con-slot-label:hover {
+    color: #02a3ec;
+}
+
+.ms-popup--footer.borderFooter {
+    display: flex;
+    justify-content: flex-end;
+    background: #f2f2f2;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    height: 60px;
+}
+
+.borderFooter {
+    border-top: 1px solid #e7e8e9;
+}

@@ -18,10 +18,19 @@
     border: 1px solid #20a3ec;
 }
 
+.ms-input:focus {
+    border: 1px solid #20a3ec!important;
+    outline: none;
+}
+
 .ms-input .ms-input-item {
     height: 100%;
     border: none;
     outline: none;
     width: 100%;
     padding: 0 12px;
+}
+
+.table-input {
+    height: 36px!important;
 }

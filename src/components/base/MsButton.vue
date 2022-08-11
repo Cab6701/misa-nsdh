@@ -41,6 +41,7 @@ export default {
   border-radius: 4px;
   padding: 0px 16px 0px 12px;
   min-width: 80px !important;
+  justify-content: center;
   font-family: Misa Fonts Regular;
   font-size: 14px;
   cursor: pointer;
