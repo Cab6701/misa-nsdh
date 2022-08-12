@@ -169,3 +169,8 @@
 .text-bold {
     font-weight: 700;
 }
+
+a {
+    text-decoration: none;
+    color: #02a3ec;
+}

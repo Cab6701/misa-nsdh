@@ -19,6 +19,10 @@
     box-sizing: border-box;
 }
 
+.dx-device-desktop .dx-device-generic {
+    overflow: hidden;
+}
+
 body {
     font-family: Misa Fonts Regular;
     font-size: 14px;

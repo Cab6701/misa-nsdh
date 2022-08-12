@@ -15,6 +15,10 @@ import DropDown from "./components/base/DropDown.vue"
 import ProfileImg from "./components/base/ProfileImg.vue";
 import TheNavbar from './components/layout/TheNavbar.vue'
 import DxTagBox from 'devextreme-vue/tag-box';
+import { createRouter, createWebHistory } from 'vue-router';
+import GridUser from './components/layout/TheContent.vue';
+import KeyListener from './components/base/KeyListener.vue';
+
 
 import {
     DxDataGrid,
@@ -26,6 +30,22 @@ import {
 
 
 const app = createApp(App);
+
+
+const routers = [
+    { path: '/process/setting/user', component: GridUser }
+]
+
+const router = createRouter({
+    // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+    history: createWebHistory(),
+    routes: routers, // short for `routes: routes`
+})
+
+
+
+
+app.component("KeyListener", KeyListener);
 app.component("MsButton", MsButton);
 app.component("TheNavbar", TheNavbar);
 app.component("DxTagBox", DxTagBox);
@@ -44,4 +64,5 @@ app.component("DxSelectBox", DxSelectBox);
 app.component("DxRowDragging", DxRowDragging);
 app.component("DxColumnChooser", DxColumnChooser);
 app.component("DxColumnFixing", DxColumnFixing);
-app.mount('#app')
+app.use(router);
+app.mount('#app');

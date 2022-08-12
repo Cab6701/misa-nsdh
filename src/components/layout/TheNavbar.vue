@@ -10,7 +10,9 @@
           "
         >
           <div class="icon-tab icon-employee"></div>
-          <div class="name-tab">Người dùng</div>
+          <div class="name-tab">
+            <router-link to="/process/setting/user">Người dùng</router-link>
+          </div>
         </div>
         <div class="setting-tab-item flex align-items-center cursor-pointer">
           <div class="icon-tab icon-protect"></div>

@@ -83,7 +83,7 @@
                     <tr>
                       <td>{{i}}</td>
                       <td>
-                        <input class="ms-input table-input input-addnew" type="text" />
+                        <input ref="userCodeRef" class="ms-input table-input input-addnew" type="text" />
                       </td>
                       <td>
                         <input class="ms-input table-input input-addnew" type="text" />
@@ -172,6 +172,10 @@ export default {
     closeAddNew(){
         this.$emit("CloseAddNewPopup",false);
     }
+  },
+  created() {
+      var me=this;
+      this.$nextTick(() => this.$refs.userCodeRef[0].focus());
   },
 }
 </script>

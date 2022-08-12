@@ -633,7 +633,7 @@
                     <div id="datagrid" class="h-full">
                       <div
                         class=""
-                        style="opacity: 1; height: calc(100vh - 267px)"
+                        style="opacity: 1; height: calc(100vh - 278px)"
                       >
                         <DxDataGrid
                           id="gridContainer"
@@ -705,8 +705,8 @@
                           />
                           <DxColumn
                             :min-width="80"
-                            :max-width="102"
-                            :width="102"
+                            :max-width="270"
+                            :width="270"
                             data-field="email"
                             caption="Email"
                             v-model:visible="isViEmail"
@@ -836,7 +836,8 @@
   />
   <EditPopup v-if="isShowEdit" @CloseEditPopup="showEditPopup" />
   <AddNew v-if="isShowAddNew" @CloseAddNewPopup="showAddNew" />
-  <div v-if="isDelMsg">
+  <KeyListener @keyup="escClose($event)" ></KeyListener>
+  <div v-if="isDelMsg" >
     <div class="ms-component con-ms-popup popup-notification ms-popup-primary">
       <div class="ms-popup--background"></div>
       <div class="ms-popup flex flex-col popup-style">
@@ -864,6 +865,7 @@
                 ms-popup--close-root
               "
               @click="closeDeleteMsg"
+              
             >
               <div
                 class="
@@ -938,6 +940,18 @@ export default {
     };
   },
   methods: {
+    /**
+     * Author: THBAC (12/8/2022)
+     * Sự kiện ấn bàn phím
+     */
+    escClose(event){
+      if(event.which==27) {
+        this.isDelMsg = false;
+        this.isShowEdit = false;
+        this.isShowAddNew=false;
+      }
+      console.log(event);
+    },
     /**
      * Author: THBAC (11/8/2022)
      * Hiện thông báo xoá
