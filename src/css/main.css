@@ -39,19 +39,35 @@ body {
     src: url(../assets/fonts/notosans-italic.1c1aaac9.woff2);
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1!important;
-}
 
-::-webkit-scrollbar-track {
-    background: #fff;
-}
-
-::-webkit-scrollbar {
-    height: 8px;
-}
+/* width */
 
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    /* background: #f1f1f1; */
+    background: #F8F8F8;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    /* background: rgb(204, 204, 204); */
+    background: #CBCCCF;
+    border-radius: 2px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    /* background: rgb(204, 204, 204); */
+    background: #B0B1B4;
 }

@@ -12,6 +12,8 @@
     min-height: 36px;
     align-items: center;
     overflow: hidden;
+    font-family: Misa Fonts Regular;
+    font-size: 14px;
 }
 
 .ms-input:hover {
@@ -33,4 +35,9 @@
 
 .table-input {
     height: 36px!important;
+}
+
+.input-addnew {
+    width: 100%;
+    padding: 0 12px;
 }

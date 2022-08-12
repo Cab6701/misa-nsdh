@@ -58,6 +58,20 @@
             <div class="flex items-center">
               <div class="avatar m-r-8">
                 <img src="../../assets/64x64.png" alt="" style="width:64px; height: 64px;" />
+                <!-- <ProfileImg
+                  :usercode="dataImg.values[0]"
+                  :username="dataImg.values[1]"
+                  style="
+                    margin-top: 10px;
+                    width: 64px;
+                    height: 64px;
+                    font-size: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                  class="avatar"
+                /> -->
               </div>
               <div class="user-information">
                 <div>
@@ -196,14 +210,24 @@ export default {
     };
   },
   methods: {
+    /**
+     * Author: THBAC (11/8/2022)
+     * Hàm checkbox
+     */
     check() {
       this.check1 = !this.check1;
       console.log(this.check1);
     },
+    /**
+     * Author: THBAC (11/8/2022)
+     * Hàm đóng form
+     */
     closePopupEdit(){
       this.$emit("CloseEditPopup",false);
     },
   },
+  props:{dataImg:{}},
+
   components: { MsButton },
 };
 </script>

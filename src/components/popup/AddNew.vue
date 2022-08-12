@@ -40,7 +40,7 @@
               "
               @click="closeAddNew"
             >
-              <i class="ms-icon notranslate icon-scale mi-close-5"></i>
+              <i class="ms-icon notranslate icon-scale mi-close-2"></i>
             </div>
           </div>
         </header>
@@ -83,25 +83,33 @@
                     <tr>
                       <td>{{i}}</td>
                       <td>
-                        <input class="ms-input table-input" type="text" />
+                        <input class="ms-input table-input input-addnew" type="text" />
                       </td>
                       <td>
-                        <input class="ms-input table-input" type="text" />
+                        <input class="ms-input table-input input-addnew" type="text" />
                       </td>
                       <td>
-                        <DxSelectBox />
+                        <DxSelectBox placeholder="Chọn phòng ban" :items="departments"/>
                       </td>
                       <td>
-                        <DxSelectBox />
+                        <DxSelectBox placeholder="Chọn vị trí" :items="positions"/>
                       </td>
                       <td>
-                        <input class="ms-input table-input" type="text" />
+                        <input class="ms-input table-input input-addnew" type="text" />
                       </td>
                       <td>
-                        <DxSelectBox />
+                        <DxTagBox
+                          :data-source="roles"
+                          :search-enabled="true"
+                          height="36px"
+                          width="340px"
+                          placeholder="Chọn vai trò"
+                          :accept-custom-value="false"
+                          :multiline="false"
+                        />
                       </td>
                       <td>
-                        <DxSelectBox />
+                        <DxSelectBox placeholder="Chọn trạng thái" :items="statuschos"/>
                       </td>
                     </tr>
                   </tbody>
@@ -121,7 +129,7 @@
         </div>
       </div>
       <div class="ms-popup--footer borderFooter">
-        <div class="flex" style="margin-right: 12px">
+        <div class="flex">
           <MsButton
             :styleButton="'btn-cancel m-r-12 '"
             :msButtonText="'Huỷ'"
@@ -143,6 +151,10 @@ export default {
   data() {
     return {
       array:1,
+      roles: ["Tất cả", "Quản trị ứng dụng quy trình", "Nhân viên", "Quản lý"],
+      departments:["Phòng tuyển sinh","Phòng đào tạo","Phòng nhân sự"],
+      positions:["Giám đốc","Chủ tịch","Lập trình viên"],
+      statuschos:["Đang hoạt động","Chưa kích hoạt","Ngừng kích hoạt","Chờ xác nhận",],
     }
   },
   methods: {

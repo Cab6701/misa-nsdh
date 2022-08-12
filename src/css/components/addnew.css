@@ -78,8 +78,8 @@ thead th {
 }
 
 .u-code {
-    width: 200px;
-    min-width: 200px;
+    width: 150px;
+    min-width: 150px;
 }
 
 .u-name {
@@ -138,7 +138,7 @@ table {
     border-collapse: collapse;
 }
 
-table th:not(:first-child, :last-child)::before {
+table th:not(:first-child)::before {
     content: "";
     position: absolute;
     top: 30%;
@@ -147,4 +147,11 @@ table th:not(:first-child, :last-child)::before {
     width: 1px;
     height: 20px;
     z-index: 1;
+}
+
+.dx-widget input,
+.dx-widget textarea {
+    font-family: Misa Fonts Regular;
+    font-size: 14px;
+    line-height: 0;
 }

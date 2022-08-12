@@ -17,17 +17,33 @@
           >
             <div class="ms-col" style="margin-left: 0%; width: 16.6667%">
               <div class="m-r-8">
-                <img
+                <!-- <img
                   src="../../assets/avt.jpg"
                   class="avatar"
                   alt=""
                   style="border-radius: 50%; margin-top: 10px"
+                /> -->
+                <ProfileImg
+                  :usercode="dataImg.values[0]"
+                  :username="dataImg.values[1]"
+                  :key="dataImg.values[0]"
+                  style="
+                    border-radius: 50%;
+                    margin-top: 10px;
+                    width: 66px;
+                    height: 66px;
+                    font-size: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                  class="avatar"
                 />
               </div>
             </div>
             <div class="ms-col" style="margin-left: 0%; width: 75%">
-              <div class="font-20 bold">Trịnh Hoài Bắc</div>
-              <div class="email">thbac@gmail.com</div>
+              <div class="font-20 bold">{{ this.dataImg.values[1] }}</div>
+              <div class="email">{{ this.dataImg.values[5] }}</div>
               <div class="status">
                 <div class="p-l-16 pos-relative">
                   <span
@@ -48,7 +64,7 @@
                 <MsButton
                   :styleButton="'btn-update-detail p-0-16'"
                   :msButtonText="'Xoá'"
-                  :isShowIcon="false    "
+                  :isShowIcon="false"
                   :iconButtonName="'icon-plus-white'"
                   @click="btnDeleteDetail"
                 />
@@ -56,41 +72,92 @@
             </div>
           </div>
           <div class="body-preview">
-            <div class="font-20 bold" style="margin-top: 20px;">THÔNG TIN CÔNG VIỆC</div>
-            <div class="ms-row" style="display: flex; width: 100%; line-height: 35px; text-indent: 0px; padding: 0px; margin-bottom: 16px; margin-top: 20px;">
-                <div class="ms-col" style="margin-left: 0%; width: 29.1667%;">
-                    <div class="bold">Mã nhân viên</div>
-                </div>
-                <div class="ms-col" style="margin-left: 0%; width: 50%;">
-                    <div class="" style="border-bottom: 1px solid rgb(231, 232, 233);">NV-6701</div>
-                </div>
+            <div class="font-20 bold" style="margin-top: 20px">
+              THÔNG TIN CÔNG VIỆC
             </div>
-            <div class="ms-row" style="display: flex; width: 100%; line-height: 35px; text-indent: 0px; padding: 0px; margin-bottom: 16px; margin-top: 20px;">
-                <div class="ms-col" style="margin-left: 0%; width: 29.1667%;">
-                    <div class="bold">Phòng ban</div>
+            <div
+              class="ms-row"
+              style="
+                display: flex;
+                width: 100%;
+                line-height: 35px;
+                text-indent: 0px;
+                padding: 0px;
+                margin-bottom: 16px;
+                margin-top: 20px;
+              "
+            >
+              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+                <div class="bold">Mã nhân viên</div>
+              </div>
+              <div class="ms-col" style="margin-left: 0%; width: 50%">
+                <div
+                  class=""
+                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                >
+                  {{ this.dataImg.values[0] }}
                 </div>
-                <div class="ms-col" style="margin-left: 0%; width: 50%;">
-                    <div class="" style="border-bottom: 1px solid rgb(231, 232, 233);">Phòng nhân sự</div>
-                </div>
+              </div>
             </div>
-            <div class="ms-row" style="display: flex; width: 100%; line-height: 35px; text-indent: 0px; padding: 0px; margin-bottom: 16px;">
-                <div class="ms-col" style="margin-left: 0%; width: 29.1667%;">
-                    <div class="bold">Vị trí công việc</div>
+            <div
+              class="ms-row"
+              style="
+                display: flex;
+                width: 100%;
+                line-height: 35px;
+                text-indent: 0px;
+                padding: 0px;
+                margin-bottom: 16px;
+                margin-top: 20px;
+              "
+            >
+              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+                <div class="bold">Phòng ban</div>
+              </div>
+              <div class="ms-col" style="margin-left: 0%; width: 50%">
+                <div
+                  class=""
+                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                >
+                  {{ this.dataImg.values[2] }}
                 </div>
-                <div class="ms-col" style="margin-left: 0%; width: 50%;">
-                    <div class="" style="border-bottom: 1px solid rgb(231, 232, 233);">Lập trình viên</div>
-                </div>
+              </div>
             </div>
-            <div class="font-20 bold" style="margin-top: 20px;">
-                THÔNG TIN PHÂN QUYỀN
-            </div>
-            <div class="w-full grid-paging" style="margin-top: 20px;">
-                <div class="grid-container">
-                    <div id="datagrid" class="h-full">
-                        <div class="role-detail" style="font-weight: 700">Vai trò</div>
-                        <div class="role-detail role-detail-child">Nhân viên</div>
-                    </div>
+            <div
+              class="ms-row"
+              style="
+                display: flex;
+                width: 100%;
+                line-height: 35px;
+                text-indent: 0px;
+                padding: 0px;
+                margin-bottom: 16px;
+              "
+            >
+              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+                <div class="bold">Vị trí công việc</div>
+              </div>
+              <div class="ms-col" style="margin-left: 0%; width: 50%">
+                <div
+                  class=""
+                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                >
+                  {{ this.dataImg.values[4] }}
                 </div>
+              </div>
+            </div>
+            <div class="font-20 bold" style="margin-top: 20px">
+              THÔNG TIN PHÂN QUYỀN
+            </div>
+            <div class="w-full grid-paging" style="margin-top: 20px">
+              <div class="grid-container">
+                <div id="datagrid" class="h-full">
+                  <div class="role-detail" style="font-weight: 700">
+                    Vai trò
+                  </div>
+                  <div class="role-detail role-detail-child">{{ this.dataImg.values[3] }}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -102,23 +169,28 @@
 export default {
   data() {
     return {
-      isShowEdit:false,
-    }
+      isShowEdit: false,
+    };
   },
   methods: {
     /**
      * Author: THBAC (4/8/2022)
      * Hàm đóng form chi tiết người dùng
      */
-    ClosePopupDetail(){
-      this.$emit("CloseDialog",false);
+    ClosePopupDetail() {
+      this.$emit("CloseDialog", false);
     },
-    btnUpdateDetail(){
-      this.$emit("CloseEditPopup",true);
+    /**
+     * Author: THBAC (4/8/2022)
+     * Nút cập nhật
+     */
+    btnUpdateDetail() {
+      this.$emit("CloseEditPopup", true);
     },
-    btnDeleteDetail(){
-
-    },
+    btnDeleteDetail() {},
   },
-}
+  props: {
+    dataImg: {},
+  },
+};
 </script>

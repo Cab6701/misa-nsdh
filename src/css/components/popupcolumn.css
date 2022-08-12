@@ -162,6 +162,8 @@ i {
 .dx-overlay-shader {
     pointer-events: auto;
     background-color: inherit!important;
+    top: 30px!important;
+    left: -10px!important;
 }
 
 #adjust-colum-popover .comand-wrap {

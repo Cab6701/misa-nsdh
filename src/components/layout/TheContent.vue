@@ -1,7 +1,7 @@
 <template>
   <div class="main-right flex-column">
     <div class="flex" style="height: 100%; margin-left: -6px">
-      <TheNavbar/>
+      <TheNavbar />
       <div class="content-setting w-full">
         <div id="setting-user">
           <div class="h-full container body-custom body-content">
@@ -734,7 +734,7 @@
                             :width="96"
                             cell-template="dropDownBoxEditor"
                           />
-                          <template #dropDownBoxEditor="{data}">
+                          <template #dropDownBoxEditor="{ data }">
                             <div class="flex justify-flexend m-8">
                               <div class="style-button">
                                 <div class="button-comand-wrap">
@@ -829,7 +829,11 @@
       </div>
     </div>
   </div>
-  <TheUserDetail v-if="isShowDetail" @CloseDialog="showDetailPopup" />
+  <TheUserDetail
+    v-if="isShowDetail"
+    @CloseDialog="showDetailPopup"
+    :dataImg="dataImg"
+  />
   <EditPopup v-if="isShowEdit" @CloseEditPopup="showEditPopup" />
   <AddNew v-if="isShowAddNew" @CloseAddNewPopup="showAddNew" />
   <div v-if="isDelMsg">
@@ -878,7 +882,7 @@
         <div class="ms-popup--content general">
           <span>Bạn có chắc chắn muốn xóa </span>
           <span>
-            <span class="text-bold">{{this.nameDel}}</span>
+            <span class="text-bold">{{ this.nameDel }}</span>
             khỏi ứng dụng AMIS Quy trình
           </span>
           <span> không?</span>
@@ -913,6 +917,7 @@ export default {
   component: {
     Benum,
   },
+  components: { MsButton, TheNavbar },
   data() {
     return {
       roles: ["Tất cả", "Quản trị ứng dụng quy trình", "Nhân viên", "Quản lý"],
@@ -922,13 +927,14 @@ export default {
       isViPosition: true,
       isViEmail: true,
       users: [],
+      dataImg: {},
       isShowDetail: false,
       isShowEdit: false,
       isShowAddNew: false,
       showIcon: false,
       check1: false,
       isDelMsg: false,
-      nameDel:"",
+      nameDel: "",
     };
   },
   methods: {
@@ -937,11 +943,11 @@ export default {
      * Hiện thông báo xoá
      * @param {} event
      */
-    deleteUser(event,name) {
+    deleteUser(event, name) {
       event.preventDefault();
       event.stopPropagation();
       this.isDelMsg = true;
-      this.nameDel=name;
+      this.nameDel = name;
     },
     /**
      * Author: THBAC (11/8/2022)
@@ -973,6 +979,10 @@ export default {
         deactive: value == Benum.Status.DeActivation,
       };
     },
+    /**
+     * Author: THBAC (11/8/2022)
+     * Hàm ccheckbox
+     */
     check() {
       this.check1 = !this.check1;
       console.log(this.check1);
@@ -1031,6 +1041,7 @@ export default {
       if (e.rowType === "data") {
         this.isShowDetail = true;
       }
+      this.dataImg = e;
     },
     /**
      * Author: THBAC (11/8/2022)
@@ -1056,17 +1067,7 @@ export default {
       this.isShowEdit = true;
     },
   },
-  watch: {
-    isViDepartment() {
-      console.log(this.isViDepartment);
-    },
-    isShowDetail() {
-      console.log(this.isShowDetail);
-    },
-    getCode() {
-      console.log(this.getCode);
-    },
-  },
+  watch: {},
   created() {
     try {
       console.log(this.getCode);
@@ -1084,7 +1085,6 @@ export default {
       console.log(error);
     }
   },
-  components: { MsButton, TheNavbar },
 };
 </script>
 

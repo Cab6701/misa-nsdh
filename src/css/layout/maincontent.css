@@ -240,6 +240,10 @@
     height: 24px;
 }
 
+.dx-scrollable-wrapper .dx-scrollable-container {
+    overflow: hidden!important;
+}
+
 
 /*CSS Background-color status*/
 

@@ -14,7 +14,7 @@ import AddNew from "./components/popup/AddNew.vue"
 import DropDown from "./components/base/DropDown.vue"
 import ProfileImg from "./components/base/ProfileImg.vue";
 import TheNavbar from './components/layout/TheNavbar.vue'
-
+import DxTagBox from 'devextreme-vue/tag-box';
 
 import {
     DxDataGrid,
@@ -28,6 +28,7 @@ import {
 const app = createApp(App);
 app.component("MsButton", MsButton);
 app.component("TheNavbar", TheNavbar);
+app.component("DxTagBox", DxTagBox);
 app.component("DxDataGrid", DxDataGrid);
 app.component("DxCheckBox", DxCheckBox);
 app.component("DxColumn", DxColumn);

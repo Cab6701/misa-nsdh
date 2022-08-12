@@ -68,15 +68,28 @@ export default {
   },
 
   methods: {
+    /**
+     * Author: THBAC (12/8/2022)
+     * Hàm chọn các thành phần con
+     * @param {*} indexSelect 
+     */
     setActive(indexSelect) {
       this.selected = indexSelect;
       this.isShow = !this.isShow;
     },
-
+    /**
+     * Author: THBAC (12/8/2022)
+     * Hàm chọn các thành phần con
+     */
     showDropDown() {
       this.isShow = !this.isShow;
     },
 
+    /**
+     * Author: THBAC (12/8/2022)
+     * Tắt khi click ra ngoài
+     * @param {*} e 
+     */
     close(e) {
       if (!this.$el.contains(e.target)) {
         this.isShow = false;
