@@ -174,3 +174,7 @@ a {
     text-decoration: none;
     color: #02a3ec;
 }
+
+.opacity-05 {
+    opacity: 0.5;
+}

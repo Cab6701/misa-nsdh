@@ -178,3 +178,10 @@ i {
 .dx-scrollable-container {
     overflow: auto!important;
 }
+
+.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-both>.dx-scrollable-wrapper>.dx-scrollable-container>.dx-scrollable-content,
+.dx-scrollable-scrollbars-alwaysvisible.dx-scrollable-horizontal>.dx-scrollable-wrapper>.dx-scrollable-container>.dx-scrollable-content {
+    padding-bottom: 8px;
+    height: 250px !important;
+    overflow: auto!important;
+}

@@ -63,6 +63,9 @@
     height: 48px;
     background-color: #fff;
     text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 
 thead th {
