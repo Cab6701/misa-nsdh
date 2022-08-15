@@ -167,6 +167,7 @@
                                               class="
                                                 ms-checkbox-container
                                                 ms-checkbox
+                                                opacity-05
                                               "
                                             >
                                               <input
@@ -179,11 +180,6 @@
                                                   checkmark
                                                   icon-square-check
                                                 "
-                                                @click="check"
-                                                :class="{
-                                                  'icon-square-check':
-                                                    this.check1 == true,
-                                                }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
                                               <span class="con-slot-label">
@@ -232,6 +228,7 @@
                                               class="
                                                 ms-checkbox-container
                                                 ms-checkbox
+                                                opacity-05
                                               "
                                             >
                                               <input
@@ -244,11 +241,6 @@
                                                   checkmark
                                                   icon-square-check
                                                 "
-                                                @click="check"
-                                                :class="{
-                                                  'icon-square-check':
-                                                    this.check1 == true,
-                                                }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
                                               <span class="con-slot-label">
@@ -937,6 +929,7 @@ export default {
       check1: false,
       isDelMsg: false,
       nameDel: "",
+      checks:[false,false,false,false,false]
     };
   },
   methods: {
