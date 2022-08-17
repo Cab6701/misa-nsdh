@@ -63,14 +63,13 @@
                   style="width: 64px; height: 64px"
                 /> -->
                 <ProfileImg
-                  :usercode="dataImg.values[0]"
-                  :username="dataImg.values[1]"
-                  :key="dataImg.values[0]"
+                  :usercode="this.userSelected.userCode"
+                  :username="this.userSelected.userName"
+                  :key="this.userSelected.userCode"
                   style="
                     border-radius: 50%;
-                    margin-top: 10px;
-                    width: 64px;
-                    height: 64px;
+                    width: 66px;
+                    height: 66px;
                     font-size: 32px;
                     display: flex;
                     align-items: center;
@@ -78,20 +77,21 @@
                   "
                   class="avatar"
                 />
-                
               </div>
               <div class="user-information">
                 <div>
-                  <span><b>{{this.userSelected.userName}}</b></span>
-                  <span class="m-l-4">({{this.userSelected.userCode}})</span>
+                  <span
+                    ><b>{{ this.userSelected.userName }}</b></span
+                  >
+                  <span class="m-l-4">({{ this.userSelected.userCode }})</span>
                 </div>
                 <div class="m-t-4 m-b-4">
-                  <span>{{this.userSelected.email}}</span>
+                  <span>{{ this.userSelected.email }}</span>
                 </div>
                 <div>
-                  <span>{{this.userSelected.positionName}}</span>
+                  <span>{{ this.userSelected.positionName }}</span>
                   <span> - </span>
-                  <span>{{this.userSelected.departmentName}}</span>
+                  <span>{{ this.userSelected.departmentName }}</span>
                 </div>
               </div>
             </div>
@@ -132,9 +132,7 @@
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
-                    <div class="label-role-checkbox">
-                      Quản trị ứng dụng quy trình
-                    </div>
+                    <div class="label-role-checkbox">Quản lý</div>
                   </span>
                 </div>
               </div>
@@ -166,7 +164,7 @@
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
-                    <div class="label-role-checkbox">Quản lý</div>
+                    <div class="label-role-checkbox">Người giám sát</div>
                   </span>
                 </div>
               </div>
@@ -182,7 +180,7 @@
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
-                    <div class="label-role-checkbox">Giám đốc</div>
+                    <div class="label-role-checkbox">Quản trị hệ thống</div>
                   </span>
                 </div>
               </div>
@@ -209,15 +207,18 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 import MsButton from "../base/MsButton.vue";
 export default {
   data() {
     return {
       checks: [false, false, false, false],
-      selectedUser:{},
+      selectedUser: {},
+      roleNameArr: [],
+      role:[],
     };
   },
-    components: { MsButton },
+  components: { MsButton },
   methods: {
     /**
      * Author: THBAC (11/8/2022)
@@ -235,12 +236,38 @@ export default {
     closePopupEdit() {
       this.$emit("CloseEditPopup", false);
     },
+    /**
+     * Author: THBAC (17/8/2022)
+     * Chuyển đổi lại mảng roleName
+     */
+    convertRoleName(array) {
+      if (array == null) {
+        return;
+      } else {
+        this.roleNameArr = array.split(", ");
+        if (this.roleNameArr.includes("Quản lý")) this.checks[0] = true;
+        if (this.roleNameArr.includes("Nhân viên")) this.checks[1] = true;
+        if (this.roleNameArr.includes("Người giám sát")) this.checks[2] = true;
+        if (this.roleNameArr.includes("Quản trị hệ thống"))
+          this.checks[3] = true;
+      }
+    },
   },
-  props: { dataImg: {}, userSelected: {} },
+  props: { userSelected: {} },
   created() {
-    this.selectedUser=this.userSelected;
-    console.log(this.selectedUser);
-  },
+    try {
+      var me = this;
+      axios.get("https://localhost:7256/api/v1/Role")
+      .then(function(res){
+          me.role=res.data;
+          console.log(res);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    this.selectedUser = this.userSelected;
+    this.convertRoleName(this.userSelected.roleName);
 
+  },
 };
 </script>

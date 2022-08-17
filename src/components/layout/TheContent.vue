@@ -838,7 +838,6 @@
     v-if="isShowEdit"
     @CloseEditPopup="showEditPopup"
     :userSelected="userSelected"
-    :dataImg="dataImg"
   />
   <AddNew v-if="isShowAddNew" @CloseAddNewPopup="showAddNew" />
   <KeyListener @keyup="escClose($event)"></KeyListener>
