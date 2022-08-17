@@ -121,66 +121,18 @@
               margin-bottom: 16px;
             "
           >
-            <div class="ms-col checkbox-detail">
+            <div class="ms-col checkbox-detail" v-for="(rol, index) in role" :key="rol.roleID">
               <div class="flex items-center">
                 <div class="ms-checkbox-container ms-checkbox">
                   <input type="checkbox" class="ms-checkbox--input" />
                   <span
                     class="icon-square-uncheck checkmark"
-                    @click="check(0)"
-                    :class="{ 'icon-square-check': this.checks[0] == true }"
+                    @click="check(index)"
+                    :class="{ 'icon-square-check': this.checks[index] == true }"
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
-                    <div class="label-role-checkbox">Quản lý</div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="ms-col checkbox-detail">
-              <div class="flex items-center">
-                <div class="ms-checkbox-container ms-checkbox">
-                  <input type="checkbox" class="ms-checkbox--input" />
-                  <span
-                    class="icon-square-uncheck checkmark"
-                    @click="check(1)"
-                    :class="{ 'icon-square-check': this.checks[1] == true }"
-                  ></span>
-                  <!-- icon-square-uncheck  -->
-                  <span class="con-slot-label">
-                    <div class="label-role-checkbox">Nhân viên</div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="ms-col checkbox-detail">
-              <div class="flex items-center">
-                <div class="ms-checkbox-container ms-checkbox">
-                  <input type="checkbox" class="ms-checkbox--input" />
-                  <span
-                    class="icon-square-uncheck checkmark"
-                    @click="check(2)"
-                    :class="{ 'icon-square-check': this.checks[2] == true }"
-                  ></span>
-                  <!-- icon-square-uncheck  -->
-                  <span class="con-slot-label">
-                    <div class="label-role-checkbox">Người giám sát</div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="ms-col checkbox-detail">
-              <div class="flex items-center">
-                <div class="ms-checkbox-container ms-checkbox">
-                  <input type="checkbox" class="ms-checkbox--input" />
-                  <span
-                    class="icon-square-uncheck checkmark"
-                    @click="check(3)"
-                    :class="{ 'icon-square-check': this.checks[3] == true }"
-                  ></span>
-                  <!-- icon-square-uncheck  -->
-                  <span class="con-slot-label">
-                    <div class="label-role-checkbox">Quản trị hệ thống</div>
+                    <div class="label-role-checkbox">{{rol.roleName}}</div>
                   </span>
                 </div>
               </div>
