@@ -202,6 +202,11 @@ export default {
         if (this.roleNameArr.includes("Người giám sát")) this.checks[2] = true;
         if (this.roleNameArr.includes("Quản trị hệ thống"))
           this.checks[3] = true;
+
+        for (let index = 0; index < this.roleNameArr.length; index++) {
+          if(this.roleNameArr[index].includes(this.role.roleName))
+              this.checks[index]=true;
+        }
       }
     },
   },
