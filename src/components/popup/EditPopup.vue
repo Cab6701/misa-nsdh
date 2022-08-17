@@ -57,11 +57,17 @@
           <div class="item-wrap">
             <div class="flex items-center">
               <div class="avatar m-r-8">
-                <img src="../../assets/64x64.png" alt="" style="width:64px; height: 64px;" />
-                <!-- <ProfileImg
+                <!-- <img
+                  src="../../assets/64x64.png"
+                  alt=""
+                  style="width: 64px; height: 64px"
+                /> -->
+                <ProfileImg
                   :usercode="dataImg.values[0]"
                   :username="dataImg.values[1]"
+                  :key="dataImg.values[0]"
                   style="
+                    border-radius: 50%;
                     margin-top: 10px;
                     width: 64px;
                     height: 64px;
@@ -71,20 +77,21 @@
                     justify-content: center;
                   "
                   class="avatar"
-                /> -->
+                />
+                
               </div>
               <div class="user-information">
                 <div>
-                  <span><b>Trịnh Hoài Bắc</b></span>
-                  <span class="m-l-4">(NV-6701)</span>
+                  <span><b>{{this.userSelected.userName}}</b></span>
+                  <span class="m-l-4">({{this.userSelected.userCode}})</span>
                 </div>
                 <div class="m-t-4 m-b-4">
-                  <span>thbac@gmail.com</span>
+                  <span>{{this.userSelected.email}}</span>
                 </div>
                 <div>
-                  <span>Lập trình viên</span>
+                  <span>{{this.userSelected.positionName}}</span>
                   <span> - </span>
-                  <span>Trung tâm sản xuất</span>
+                  <span>{{this.userSelected.departmentName}}</span>
                 </div>
               </div>
             </div>
@@ -120,8 +127,8 @@
                   <input type="checkbox" class="ms-checkbox--input" />
                   <span
                     class="icon-square-uncheck checkmark"
-                    @click="check"
-                    :class="{ 'icon-square-check': this.check1 == true }"
+                    @click="check(0)"
+                    :class="{ 'icon-square-check': this.checks[0] == true }"
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
@@ -138,8 +145,8 @@
                   <input type="checkbox" class="ms-checkbox--input" />
                   <span
                     class="icon-square-uncheck checkmark"
-                    @click="check"
-                    :class="{ 'icon-square-check': this.check1 == true }"
+                    @click="check(1)"
+                    :class="{ 'icon-square-check': this.checks[1] == true }"
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
@@ -154,8 +161,8 @@
                   <input type="checkbox" class="ms-checkbox--input" />
                   <span
                     class="icon-square-uncheck checkmark"
-                    @click="check"
-                    :class="{ 'icon-square-check': this.check1 == true }"
+                    @click="check(2)"
+                    :class="{ 'icon-square-check': this.checks[2] == true }"
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
@@ -170,8 +177,8 @@
                   <input type="checkbox" class="ms-checkbox--input" />
                   <span
                     class="icon-square-uncheck checkmark"
-                    @click="check"
-                    :class="{ 'icon-square-check': this.check1 == true }"
+                    @click="check(3)"
+                    :class="{ 'icon-square-check': this.checks[3] == true }"
                   ></span>
                   <!-- icon-square-uncheck  -->
                   <span class="con-slot-label">
@@ -206,28 +213,34 @@ import MsButton from "../base/MsButton.vue";
 export default {
   data() {
     return {
-      check1: false,
+      checks: [false, false, false, false],
+      selectedUser:{},
     };
   },
+    components: { MsButton },
   methods: {
     /**
      * Author: THBAC (11/8/2022)
-     * Hàm checkbox
+     * Hàm ccheckbox
      */
-    check() {
-      this.check1 = !this.check1;
-      console.log(this.check1);
+    check(input) {
+      if (this.checks[input]) {
+        this.checks[input] = false;
+      } else this.checks[input] = true;
     },
     /**
      * Author: THBAC (11/8/2022)
      * Hàm đóng form
      */
-    closePopupEdit(){
-      this.$emit("CloseEditPopup",false);
+    closePopupEdit() {
+      this.$emit("CloseEditPopup", false);
     },
   },
-  props:{dataImg:{}},
+  props: { dataImg: {}, userSelected: {} },
+  created() {
+    this.selectedUser=this.userSelected;
+    console.log(this.selectedUser);
+  },
 
-  components: { MsButton },
 };
 </script>

@@ -12,6 +12,7 @@
 @import url(../css/components/addnew.css);
 @import url(../css/base/dropdown.css);
 @import url(../css/popup/deletepopup.css);
+@import url(../css/base/bloading.css);
 * {
     margin: 0;
     padding: 0;

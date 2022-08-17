@@ -300,10 +300,10 @@
                                                   icon-square-uncheck
                                                   checkmark
                                                 "
-                                                @click="check"
+                                                @click="check(0)"
                                                 :class="{
                                                   'icon-square-check':
-                                                    this.check1 == true,
+                                                    this.checks[0] == true,
                                                 }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
@@ -364,10 +364,10 @@
                                                   icon-square-uncheck
                                                   checkmark
                                                 "
-                                                @click="check"
+                                                @click="check(1)"
                                                 :class="{
                                                   'icon-square-check':
-                                                    this.check1 == true,
+                                                    this.checks[1] == true,
                                                 }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
@@ -428,10 +428,10 @@
                                                   icon-square-uncheck
                                                   checkmark
                                                 "
-                                                @click="check"
+                                                @click="check(2)"
                                                 :class="{
                                                   'icon-square-check':
-                                                    this.check1 == true,
+                                                    this.checks[2] == true,
                                                 }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
@@ -492,10 +492,10 @@
                                                   icon-square-uncheck
                                                   checkmark
                                                 "
-                                                @click="check"
+                                                @click="check(3)"
                                                 :class="{
                                                   'icon-square-check':
-                                                    this.check1 == true,
+                                                    this.checks[3] == true,
                                                 }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
@@ -556,10 +556,10 @@
                                                   icon-square-uncheck
                                                   checkmark
                                                 "
-                                                @click="check"
+                                                @click="check(4)"
                                                 :class="{
                                                   'icon-square-check':
-                                                    this.check1 == true,
+                                                    this.checks[4] == true,
                                                 }"
                                               ></span>
                                               <!-- icon-square-uncheck  -->
@@ -606,12 +606,13 @@
                                 :styleButton="'btn-cancel m-r-12 '"
                                 :msButtonText="'Lấy lại mặc định'"
                                 :isShowIcon="false"
-                                @click="closePopupEdit"
+                                @click="setDefault"
                               />
                               <MsButton
                                 :styleButton="'ms-button-primary'"
                                 :msButtonText="'Áp dụng'"
                                 :isShowIcon="false"
+                                @click="cusCol"
                               />
                             </div>
                           </footer>
@@ -677,7 +678,7 @@
                             :width="213"
                             data-field="departmentName"
                             caption="Phòng ban"
-                            v-model:visible="isViDepartment"
+                            v-model:visible="isVisible[0]"
                             @mouseover="onCellHoverChanged"
                           />
                           <DxColumn
@@ -685,6 +686,7 @@
                             :max-width="480"
                             :width="480"
                             data-field="roleName"
+                            v-model:visible="isVisible[3]"
                             caption="Vai trò"
                           />
                           <DxColumn
@@ -693,7 +695,7 @@
                             :width="223"
                             data-field="positionName"
                             caption="Vị trí công việc"
-                            v-model:visible="isViPosition"
+                            v-model:visible="isVisible[2]"
                           />
                           <DxColumn
                             :min-width="80"
@@ -701,7 +703,7 @@
                             :width="270"
                             data-field="email"
                             caption="Email"
-                            v-model:visible="isViEmail"
+                            v-model:visible="isVisible[1]"
                           />
                           <DxColumn
                             :min-width="150"
@@ -709,6 +711,7 @@
                             :width="164"
                             data-field="status"
                             caption="Trạng thái"
+                            v-model:visible="isVisible[4]"
                             cell-template="statusDot"
                           />
                           <template #statusDot="{ data }">
@@ -732,7 +735,7 @@
                                 <div class="button-comand-wrap">
                                   <div
                                     class="mi-pencil icon-hidden"
-                                    @click="editUser($event)"
+                                    @click="editUser($event, data)"
                                   ></div>
                                 </div>
                               </div>
@@ -740,7 +743,7 @@
                                 <div class="button-comand-wrap">
                                   <div
                                     class="icon-delete-custom icon-hidden"
-                                    @click="deleteUser($event, data.values[1])"
+                                    @click="deleteUser($event, data)"
                                   ></div>
                                 </div>
                               </div>
@@ -752,7 +755,9 @@
                         <div class="grid-navigation">
                           <div class="page-total flex">
                             Tổng số bản ghi:
-                            <b style="padding: 0px 6px"> 44</b>
+                            <b style="padding: 0px 6px">
+                              {{ this.totalPage }}</b
+                            >
                           </div>
                           <div class="page-size-selector flex items-center">
                             <div class="m-r-8">Số bản ghi</div>
@@ -779,6 +784,8 @@
                                     ms-popup--close
                                     btn-icon-1
                                   "
+                                  @click="prevPage"
+                                  :class="{ 'opacity-05': this.pageIndex == 1 }"
                                 >
                                   <i class="mi-chevron-left"></i>
                                 </div>
@@ -799,6 +806,7 @@
                                     ms-popup--close
                                     btn-icon-1
                                   "
+                                  @click="nextPage"
                                 >
                                   <i class="mi-chevron-right"></i>
                                 </div>
@@ -826,10 +834,15 @@
     @CloseDialog="showDetailPopup"
     :dataImg="dataImg"
   />
-  <EditPopup v-if="isShowEdit" @CloseEditPopup="showEditPopup" />
+  <EditPopup
+    v-if="isShowEdit"
+    @CloseEditPopup="showEditPopup"
+    :userSelected="userSelected"
+    :dataImg="dataImg"
+  />
   <AddNew v-if="isShowAddNew" @CloseAddNewPopup="showAddNew" />
-  <KeyListener @keyup="escClose($event)" ></KeyListener>
-  <div v-if="isDelMsg" >
+  <KeyListener @keyup="escClose($event)"></KeyListener>
+  <div v-if="isDelMsg">
     <div class="ms-component con-ms-popup popup-notification ms-popup-primary">
       <div class="ms-popup--background"></div>
       <div class="ms-popup flex flex-col popup-style">
@@ -857,7 +870,6 @@
                 ms-popup--close-root
               "
               @click="closeDeleteMsg"
-              
             >
               <div
                 class="
@@ -893,12 +905,15 @@
               :styleButton="'btn-delete'"
               :msButtonText="'Xoá'"
               :isShowIcon="false"
+              @click="agreeDelete"
             />
           </div>
         </footer>
       </div>
     </div>
   </div>
+
+  <BLoading v-if="isLoading" />
 </template>
 
 
@@ -915,13 +930,11 @@ export default {
   data() {
     return {
       roles: ["Tất cả", "Quản trị ứng dụng quy trình", "Nhân viên", "Quản lý"],
-      isVisible: true,
+      isVisible: [true, true, true, true, true],
       isCustomCol: false,
-      isViDepartment: true,
-      isViPosition: true,
-      isViEmail: true,
       users: [],
       dataImg: {},
+      isLoading: false,
       isShowDetail: false,
       isShowEdit: false,
       isShowAddNew: false,
@@ -929,32 +942,117 @@ export default {
       check1: false,
       isDelMsg: false,
       nameDel: "",
-      checks:[false,false,false,false,false]
+      idDel: "",
+      checks: [false, false, false, false, false],
+      pageIndex: 1,
+      pageSize: 20,
+      filterString: "",
+      totalPage: 0,
+      userSelected: {},
     };
   },
   methods: {
     /**
+     * Author: THBAC (17/8/2022)
+     * Đồng ý xoá người dùng
+     */
+    agreeDelete() {
+      try {
+        var me = this;
+        axios
+          .delete(`https://localhost:7256/api/v1/User?userID=${me.idDel}`)
+          .then(function (res) {
+            me.isDelMsg = false;
+            me.reload();
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    /**
+     * Author: THBAC (17/8/2022)
+     * Nút về trang trước
+     */
+    prevPage() {
+      if (this.pageIndex > 1) {
+        this.pageIndex = this.pageIndex - 1;
+        var me = this;
+        this.isLoading = true;
+        axios
+          .get(
+            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+          )
+          .then(function (res) {
+            me.isLoading = false;
+            me.users = res.data.data;
+            console.log(res);
+          })
+          .catch(function (res) {
+            console.log(res);
+          });
+      }
+    },
+    /**
+     * Author: THBAC (17/8/2022)
+     * Nút ấn sang trang sau
+     */
+    nextPage() {
+      this.pageIndex = this.pageIndex + 1;
+      var me = this;
+      this.isLoading = true;
+      axios
+        .get(
+          `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+        )
+        .then(function (res) {
+          me.isLoading = false;
+          me.users = res.data.data;
+          console.log(res);
+        })
+        .catch(function (res) {
+          console.log(res);
+        });
+    },
+    /**
+     * Author: THBAC (17/8/2022)
+     * chỉnh về mặc định hiển thị tât cả các cột
+     */
+    setDefault() {
+      this.checks = [true, true, true, true, true];
+    },
+    /**
+     * Author: THBAC (17/8/2022)
+     * Nút áp dụng thay đổi các cột trong bảng
+     */
+    cusCol() {
+      this.isVisible = this.checks;
+      this.isCustomCol = false;
+    },
+    /**
      * Author: THBAC (12/8/2022)
      * Sự kiện ấn bàn phím
      */
-    escClose(event){
-      if(event.which==27) {
+    escClose(event) {
+      if (event.which == 27) {
         this.isDelMsg = false;
         this.isShowEdit = false;
-        this.isShowAddNew=false;
+        this.isShowAddNew = false;
+        this.isShowDetail = false;
       }
-      console.log(event);
     },
     /**
      * Author: THBAC (11/8/2022)
      * Hiện thông báo xoá
      * @param {} event
      */
-    deleteUser(event, name) {
+    deleteUser(event, data) {
       event.preventDefault();
       event.stopPropagation();
+      console.log(data);
       this.isDelMsg = true;
-      this.nameDel = name;
+      this.nameDel = data.values[1];
+      this.idDel = data.key;
     },
     /**
      * Author: THBAC (11/8/2022)
@@ -990,9 +1088,10 @@ export default {
      * Author: THBAC (11/8/2022)
      * Hàm ccheckbox
      */
-    check() {
-      this.check1 = !this.check1;
-      console.log(this.check1);
+    check(input) {
+      if (this.checks[input]) {
+        this.checks[input] = false;
+      } else this.checks[input] = true;
     },
     /**
      * Author: THBAC (10/8/2022)
@@ -1063,26 +1162,55 @@ export default {
      */
     visiblePopup() {
       this.isCustomCol = true;
+      this.checks = JSON.parse(JSON.stringify(this.isVisible));
     },
     /**
      * Author: THBAC (11/8/2022)
      * Nút mở form chỉnh sửa vai trò
      */
-    editUser(event) {
+    editUser(event, data) {
       event.preventDefault();
       event.stopPropagation();
       this.isShowEdit = true;
+      this.userSelected = data.data;
+    },
+    reload() {
+      try {
+        var me = this;
+        setTimeout(
+          () =>
+            axios
+              .get(
+                `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+              )
+              .then(function (res) {
+                me.users = res.data.data;
+                me.totalPage = res.data.totalRecord;
+                console.log(res);
+              })
+              .catch(function (res) {
+                console.log(res);
+              }),
+          1000
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   watch: {},
   created() {
     try {
-      console.log(this.getCode);
       var me = this;
+      me.isLoading = true;
       axios
-        .get("https://localhost:7256/api/v1/User")
+        .get(
+          `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+        )
         .then(function (res) {
-          me.users = res.data;
+          me.isLoading = false;
+          me.users = res.data.data;
+          me.totalPage = res.data.totalRecord;
           console.log(res);
         })
         .catch(function (res) {
