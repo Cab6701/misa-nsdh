@@ -56,6 +56,17 @@
     padding: 24px;
 }
 
+.popup-s {
+    background: rgb(255, 255, 255);
+    width: 992px;
+    min-width: 500px;
+}
+
+.popup-content-1 {
+    overflow: auto;
+    height: calc(100% - 60px);
+}
+
 
 /* CSS Table */
 

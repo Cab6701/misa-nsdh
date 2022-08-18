@@ -1,0 +1,43 @@
+.items-center {
+    align-items: center;
+}
+
+.ms-icon-default {
+    order: 0;
+    margin-right: 4px;
+    margin-left: 0px;
+}
+
+.ms-icon {
+    display: block;
+}
+
+.ms-button--icon {
+    display: flex;
+    position: relative;
+    font-size: 20px;
+}
+
+.ms-button--text {
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ms-button-text {
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.btn-default {
+    width: auto !important;
+    height: 36px !important;
+    border-radius: 4px;
+    padding: 0px 16px 0px 12px;
+    min-width: 80px !important;
+    justify-content: center;
+    font-family: Misa Fonts Regular;
+    font-size: 14px;
+    cursor: pointer;
+}

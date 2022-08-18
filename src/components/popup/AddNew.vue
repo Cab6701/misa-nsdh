@@ -2,19 +2,14 @@
   <div class="ms-component con-ms-popup center ms-popup-primary">
     <div class="ms-popup--background"></div>
     <div
-      class="ms-popup flex flex-col"
-      style="background: rgb(255, 255, 255); width: 992px; min-width: 500px"
+      class="ms-popup flex flex-col popup-s"
     >
-      <div class="" style="height: 53px">
-        <header class="ms-popup--header" style="height: 53px">
+      <div class="h-53">
+        <header class="ms-popup--header h-53">
           <div class="ms-popup--title">
             <h2>
               <span
-                style="
-                  letter-spacing: 0.576px;
-                  font-size: 24px;
-                  color: rgb(33, 33, 33);
-                "
+                class="mess-title"
               >
                 Thêm người dùng
               </span>
@@ -46,8 +41,7 @@
         </header>
       </div>
       <div
-        class="ms-popup--content"
-        style="overflow: auto; height: calc(100% - 60px)"
+        class="ms-popup--content popup-content-1"
       >
         <div class="flex header-custom"></div>
         <div class="w-full grid-paging">
@@ -79,27 +73,27 @@
                       Trạng thái<span class="required"> * </span>
                     </th>
                   </thead>
-                  <tbody v-for="i in array" :key="i">
+                  <tbody v-for="(item,index) in array" :key="index">
                     <tr>
-                      <td>{{i}}</td>
+                      <td>{{index}}</td>
                       <td>
-                        <input ref="userCodeRef" class="ms-input table-input input-addnew" type="text" />
+                        <input ref="userCodeRef" class="ms-input table-input input-addnew" type="text" v-model="user.userCode"/>
                       </td>
                       <td>
-                        <input class="ms-input table-input input-addnew" type="text" />
+                        <input class="ms-input table-input input-addnew" type="text" v-model="user.userName"/>
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn phòng ban" :items="departments"/>
+                        <DxSelectBox placeholder="Chọn phòng ban" :items="departmentArr" v-model="user.userDepartment"/>
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn vị trí" :items="positions"/>
+                        <DxSelectBox placeholder="Chọn vị trí" :items="positionArr"/>
                       </td>
                       <td>
-                        <input class="ms-input table-input input-addnew" type="text" />
+                        <input class="ms-input table-input input-addnew" type="text" v-model="user.email"/>
                       </td>
                       <td>
                         <DxTagBox
-                          :data-source="roles"
+                          :data-source="roleArray"
                           :search-enabled="true"
                           height="36px"
                           width="340px"
@@ -107,9 +101,10 @@
                           :accept-custom-value="false"
                           :multiline="false"
                         />
+
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn trạng thái" :items="statuschos"/>
+                        <DxSelectBox placeholder="Chọn trạng thái" :items="statusArr.statusName"/>
                       </td>
                     </tr>
                   </tbody>
@@ -140,6 +135,7 @@
             :styleButton="'ms-button-primary'"
             :msButtonText="'Lưu'"
             :isShowIcon="false"
+            @click="btnaddNew"
           />
         </div>
       </div>
@@ -147,17 +143,65 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       array:1,
-      roles: ["Tất cả", "Quản trị ứng dụng quy trình", "Nhân viên", "Quản lý"],
-      departments:["Phòng tuyển sinh","Phòng đào tạo","Phòng nhân sự"],
-      positions:["Giám đốc","Chủ tịch","Lập trình viên"],
-      statuschos:["Đang hoạt động","Chưa kích hoạt","Ngừng kích hoạt","Chờ xác nhận",],
+      roles: [],
+      departments:[],
+      positions:[],
+      statuschos:[],
+      departmentArr:[],
+      positionArr:[],
+      statusArr:[
+        {
+          ID:0,
+          statusName:"Đang hoạt động"
+        },
+        {
+          ID:1,
+          statusName:"Chờ xác nhận"
+        },
+        {
+          ID:2,
+          statusName:"Chưa kích hoạt"
+        },
+        {
+          ID:3,
+          statusName:"Ngừng kích hoạt"
+        }
+      ],
+      roleArr:[],
+      user:{
+        userCode:"NV-12688",
+        userName: "Trịnh Toang Hoàng",
+        departmentID : "469b3ece-744a-45d5-957d-e8c757976496",
+        positionID: "3304dddb-1b72-607f-25c2-579daad24557",
+        roleID: ["674934cc-42cf-20cf-1d4a-aea48a10ed18"],
+        email:"avc@gmail.com",
+        status:0,
+      },
+      listUser:[]
     }
   },
   methods: {
+    /**
+     * Author: THBAC (18/8/2022)
+     * Nút lưu để thêm mới user
+     */
+    btnaddNew(){
+        try {
+          this.listUser.push(this.user)
+          console.log(this.user);
+          axios.post("https://localhost:7256/api/v1/User/InsertUsers",this.listUser)
+          .then(function(res){
+            console.log(res);
+          })
+        } catch (error) {
+          console.log(error);
+        }
+    },
     /**
      * Author: THBAC (10/8/2022)
      * Nút thêm dòng mới
@@ -173,9 +217,50 @@ export default {
         this.$emit("CloseAddNewPopup",false);
     }
   },
-  created() {
+ async created() {
       var me=this;
       this.$nextTick(() => this.$refs.userCodeRef[0].focus());
+
+      //Lấy dữ liệu phòng ban
+     await axios.get("https://localhost:7256/api/v1/Department")
+      .then(function (res) {
+          me.departments=res.data;
+          console.log(res);
+      })
+
+      //Lấy dữ liệu vị trí
+      await axios.get("https://localhost:7256/api/v1/Positions")
+      .then(function (res) {
+          me.positions=res.data;
+          console.log(res);
+      })
+
+      //Lấy dữ liệu vai trò
+      await axios.get("https://localhost:7256/api/v1/Role")
+      .then(function (res) {
+          me.roles=res.data;
+          console.log(res);
+      })
+
+      //Lấy dữ liệu user
+      await axios.get("https://localhost:7256/api/v1/User")
+      .then(function (res) {
+          me.statuschos=res.data;
+          console.log(res);
+      })
+
+      for (let index = 0; index < this.departments.length; index++) {
+            this.departmentArr.push(this.departments[index].departmentName);
+        }
+
+        for (let index = 0; index < this.positions.length; index++) {
+            this.positionArr.push(this.positions[index].positionName);
+        }
+
+        for (let index = 0; index < this.roles.length; index++) {
+            this.roleArr.push(this.roles[index].roleName);
+        }
+
   },
 }
 </script>

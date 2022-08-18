@@ -1,11 +1,11 @@
 <template>
-  <div class="main-right flex-column">
-    <div class="flex" style="height: 100%; margin-left: -6px">
+  <div id="content" class="main-right flex-column">
+    <div class="flex h-m">
       <TheNavbar />
       <div class="content-setting w-full">
         <div id="setting-user">
           <div class="h-full container body-custom body-content">
-            <div class="content-header p-b-16" style="width: 100%">
+            <div class="content-header p-b-16 w-100">
               <div class="flex justify-between items-center header-custom">
                 <div class="font-20 bold">Người dùng</div>
                 <MsButton
@@ -19,15 +19,10 @@
             </div>
             <div
               class="content-main"
-              style="
-                background: rgb(255, 255, 255);
-                height: calc(100vh - 148px);
-              "
             >
               <div class="h-full w-full">
                 <div
-                  class="flex items-center w-full bg-white"
-                  style="height: 60px"
+                  class="flex items-center w-full bg-white h-60"
                 >
                   <span class="input-search-user">
                     <div class="m-l-12">
@@ -114,7 +109,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div style="height: 35px; width: 100%">
+                              <div class="w-h-35">
                                 <div class="ms-input flex w-full">
                                   <div
                                     class="
@@ -199,8 +194,8 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
                                           >
                                             <i
                                               class="
@@ -260,8 +255,8 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
                                           >
                                             <i
                                               class="
@@ -324,8 +319,8 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
                                           >
                                             <i
                                               class="
@@ -388,8 +383,8 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
                                           >
                                             <i
                                               class="
@@ -452,8 +447,9 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
+                                           
                                           >
                                             <i
                                               class="
@@ -516,8 +512,9 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
+                                          
                                           >
                                             <i
                                               class="
@@ -580,8 +577,9 @@
                                               justify-center
                                               ms-icon-
                                               opacity-0
+                                              cursor-scroll
                                             "
-                                            style="cursor: all-scroll"
+                                      
                                           >
                                             <i
                                               class="
@@ -625,8 +623,7 @@
                   <div class="grid-container">
                     <div id="datagrid" class="h-full">
                       <div
-                        class=""
-                        style="opacity: 1; height: calc(100vh - 278px)"
+                        class="datagrid"
                       >
                         <DxDataGrid
                           id="gridContainer"
@@ -683,8 +680,8 @@
                           />
                           <DxColumn
                             :min-width="80"
-                            :max-width="480"
-                            :width="480"
+                            :max-width="250"
+                            :width="250"
                             data-field="roleName"
                             v-model:visible="isVisible[3]"
                             caption="Vai trò"
@@ -755,7 +752,7 @@
                         <div class="grid-navigation">
                           <div class="page-total flex">
                             Tổng số bản ghi:
-                            <b style="padding: 0px 6px">
+                            <b class="p-0-6">
                               {{ this.totalPage }}</b
                             >
                           </div>
@@ -821,7 +818,6 @@
               </div>
               <div
                 class="m-l-16 resize1 dx-resizable"
-                style="display: none; width: 0px; height: 100%"
               ></div>
             </div>
           </div>
@@ -835,6 +831,7 @@
     @OpenDel="showDelMess"
     @DelUser="delDetail"
     :dataImg="dataImg"
+    :key="dataImg.userCode"
   />
   <EditPopup
     v-if="isShowEdit"
@@ -847,16 +844,13 @@
     <div class="ms-component con-ms-popup popup-notification ms-popup-primary">
       <div class="ms-popup--background"></div>
       <div class="ms-popup flex flex-col popup-style">
-        <div class="" style="height: 53px">
-          <header class="ms-popup--header" style="height: 53px">
+        <div class="h-53">
+          <header class="ms-popup--header h-53">
             <div class="ms-popup--title">
               <h2>
                 <span
-                  style="
-                    letter-spacing: 0.576px;
-                    font-size: 24px;
-                    color: rgb(33, 33, 33);
-                  "
+                  
+                  class="mess-title"
                   >Xoá người dùng</span
                 >
               </h2>
@@ -894,8 +888,8 @@
           </span>
           <span> không?</span>
         </div>
-        <footer class="ms-popup--footer" style="height: 60px">
-          <div class="flex" style="margin-right: 12px">
+        <footer class="ms-popup--footer h-60">
+          <div class="flex m-r-12">
             <MsButton
               :styleButton="'btn-cancel m-r-12 '"
               :msButtonText="'Huỷ'"
@@ -1158,7 +1152,6 @@ export default {
     showDetail(e) {
       this.isShowDetail = true;
       this.dataImg = e.data;
-      console.log(e);
     },
     /**
      * Author: THBAC (11/8/2022)

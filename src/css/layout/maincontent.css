@@ -11,9 +11,22 @@
     margin: 0;
 }
 
+.h-m {
+    height: 100%;
+    margin-left: -6px
+}
+
+.datagrid {
+    overflow: auto;
+    opacity: 1;
+    height: calc(100vh - 278px)
+}
+
 .content-main {
     overflow-x: hidden;
     overflow-y: auto;
+    background: rgb(255, 255, 255);
+    height: calc(100vh - 148px);
     width: 100%;
     border-radius: 4px;
     display: flex;
@@ -26,6 +39,9 @@
 
 .resize1 {
     transform: none!important;
+    display: none;
+    width: 0px;
+    height: 100%
 }
 
 .dx-resizable {

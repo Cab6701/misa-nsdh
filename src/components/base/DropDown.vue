@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative">
+  <div class="pos-relative">
     <MsButton
       class=""
       :styleButton="'btn-select-pagesize justify-between'"

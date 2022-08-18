@@ -204,3 +204,25 @@ label {
 .borderFooter {
     border-top: 1px solid #e7e8e9;
 }
+
+.edit-popup {
+    background: rgb(255, 255, 255);
+    width: 600px;
+    min-width: 500px;
+    height: auto;
+}
+
+.edit-role {
+    font-size: 14px;
+    margin: 0px !important;
+    color: rgb(27, 28, 30) !important;
+}
+
+.edit-row {
+    display: flex;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 0px;
+    padding: 0px;
+    margin-bottom: 16px;
+}

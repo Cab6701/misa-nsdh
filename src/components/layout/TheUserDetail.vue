@@ -5,54 +5,22 @@
         <div class="content-user">
           <div class="ms-icon-container" @click="ClosePopupDetail"></div>
           <div
-            class="ms-row"
-            style="
-              display: flex;
-              width: 100%;
-              line-height: 35px;
-              text-indent: 0px;
-              padding: 0px;
-              margin-bottom: 16px;
-            "
+            class="ms-row content-detail"
           >
-            <div class="ms-col" style="margin-left: 0%; width: 16.6667%">
+            <div class="ms-col col-16">
               <div class="m-r-8">
-                <!-- <img
-                  src="../../assets/avt.jpg"
-                  class="avatar"
-                  alt=""
-                  style="border-radius: 50%; margin-top: 10px"
-                /> -->
                 <ProfileImg
                   :usercode="dataImg.userCode"
                   :username="dataImg.userName"
                   :key="dataImg.userCode"
-                  style="
-                    border-radius: 50%;
-                    margin-top: 10px;
-                    width: 66px;
-                    height: 66px;
-                    font-size: 32px;
-                    font-weight: bold;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                  "
-                  class="avatar"
+                  class="avatar img-detail"
                 />
               </div>
             </div>
-            <div class="ms-col" style="margin-left: 0%; width: 75%">
+            <div class="ms-col col-75">
               <div class="font-20 bold">{{ this.dataImg.userName }}</div>
               <div class="email">{{ this.dataImg.email }}</div>
               <div class="status">
-                <!-- <div class="p-l-16 pos-relative">
-                  <span
-                    class="dot"
-                    style="background-color: rgb(243, 150, 25)"
-                  ></span>
-                  <span class="wait-for-confirmation">Chờ xác nhận</span>
-                </div> -->
                 <div
                   class="p-l-16 pos-relative"
                   :class="bgStatus(this.dataImg.status)"
@@ -80,87 +48,58 @@
             </div>
           </div>
           <div class="body-preview">
-            <div class="font-20 bold" style="margin-top: 20px">
+            <div class="font-20 bold m-t-20">
               THÔNG TIN CÔNG VIỆC
             </div>
             <div
-              class="ms-row"
-              style="
-                display: flex;
-                width: 100%;
-                line-height: 35px;
-                text-indent: 0px;
-                padding: 0px;
-                margin-bottom: 16px;
-                margin-top: 20px;
-              "
+              class="ms-row body-detail"
             >
-              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+              <div class="ms-col col-29" >
                 <div class="bold">Mã nhân viên</div>
               </div>
-              <div class="ms-col" style="margin-left: 0%; width: 50%">
+              <div class="ms-col col-50 ">
                 <div
-                  class=""
-                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                  class="border-detail"
                 >
                   {{ this.dataImg.userCode }}
                 </div>
               </div>
             </div>
             <div
-              class="ms-row"
-              style="
-                display: flex;
-                width: 100%;
-                line-height: 35px;
-                text-indent: 0px;
-                padding: 0px;
-                margin-bottom: 16px;
-                margin-top: 20px;
-              "
+              class="ms-row body-detail"
             >
-              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+              <div class="ms-col col-29 ">
                 <div class="bold">Phòng ban</div>
               </div>
-              <div class="ms-col" style="margin-left: 0%; width: 50%">
+              <div class="ms-col col-50">
                 <div
-                  class=""
-                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                  class="border-detail"
                 >
                   {{ this.dataImg.departmentName }}
                 </div>
               </div>
             </div>
             <div
-              class="ms-row"
-              style="
-                display: flex;
-                width: 100%;
-                line-height: 35px;
-                text-indent: 0px;
-                padding: 0px;
-                margin-bottom: 16px;
-              "
+              class="ms-row body-detail-1"
             >
-              <div class="ms-col" style="margin-left: 0%; width: 29.1667%">
+              <div class="ms-col col-29" >
                 <div class="bold">Vị trí công việc</div>
               </div>
-              <div class="ms-col" style="margin-left: 0%; width: 50%">
+              <div class="ms-col col-20">
                 <div
-                  class=""
-                  style="border-bottom: 1px solid rgb(231, 232, 233)"
+                  class="border-detail"
                 >
                   {{ this.dataImg.positionName }}
                 </div>
               </div>
             </div>
-            <div class="font-20 bold" style="margin-top: 20px">
+            <div class="font-20 bold m-t-20">
               THÔNG TIN PHÂN QUYỀN
             </div>
-            <div class="w-full grid-paging" style="margin-top: 20px">
+            <div class="w-full grid-paging m-t-20">
               <div class="grid-container">
                 <div id="datagrid" class="h-full">
-                  <div class="role-detail" style="font-weight: 700">
+                  <div class="role-detail text-bold">
                     Vai trò
                   </div>
                   <div
@@ -226,7 +165,6 @@ export default {
       this.isShowEdit = true;
     },
     btnDeleteDetail() {
-      this.$emit("CloseDialog", false);
       this.$emit("OpenDel", true);
       this.$emit("DelUser", this.dataImg.userID, this.dataImg.userName);
     },
@@ -239,5 +177,6 @@ export default {
     else this.roleArray = this.dataImg.roleName.split(", ");
     console.log(this.dataImg);
   },
+
 };
 </script>

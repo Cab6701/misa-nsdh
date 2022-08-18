@@ -6,19 +6,19 @@
         <a href="" class="nav-logo flex flex-c-m nav-text">Quy trình</a>
         <div class="top-menu-container flex-1">
           <div class="flex-m">
-            <div class="menu-item" style="height: 100%">
+            <div class="menu-item h-full">
               <div class="menu-item-name">Lượt chạy</div>
               <div class=""></div>
             </div>
-            <div class="menu-item" style="height: 100%">
+            <div class="menu-item h-full" >
               <div class="menu-item-name">Thiết kế quy trình</div>
               <div class=""></div>
             </div>
-            <div class="menu-item" style="height: 100%">
+            <div class="menu-item h-full" >
               <div class="menu-item-name">Báo cáo</div>
               <div class=""></div>
             </div>
-            <div class="menu-item" style="height: 100%">
+            <div class="menu-item h-full" >
               <div class="menu-item-name">Thiết lập</div>
               <div class="menu-item-active"></div>
             </div>

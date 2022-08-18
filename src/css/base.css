@@ -73,6 +73,10 @@
     height: 100%!important;
 }
 
+.h-60 {
+    height: 60px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -96,6 +100,10 @@
 
 .m-r-16 {
     margin-right: 16px!important;
+}
+
+.cursor-scroll {
+    cursor: all-scroll
 }
 
 .pos-relative {
@@ -130,8 +138,16 @@
     padding: 0 16px!important;
 }
 
+.p-0-6 {
+    padding: 0px 6px!important;
+}
+
 .m-r-12 {
     margin-right: 12px!important;
+}
+
+.m-t-20 {
+    margin-top: 20px;
 }
 
 .m-t-4 {
@@ -148,6 +164,10 @@
 
 .ms-col {
     float: left;
+}
+
+.float-inherit {
+    float: inherit;
 }
 
 .center {

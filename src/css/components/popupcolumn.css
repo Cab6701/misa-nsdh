@@ -185,3 +185,8 @@ i {
     height: 250px !important;
     overflow: auto!important;
 }
+
+.w-h-35 {
+    height: 35px;
+    width: 100%
+}

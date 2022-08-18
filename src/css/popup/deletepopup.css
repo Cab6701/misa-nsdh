@@ -12,3 +12,13 @@
     overflow: auto;
     height: calc(100% - 60px);
 }
+
+.h-53 {
+    height: 53px;
+}
+
+.mess-title {
+    letter-spacing: 0.576px;
+    font-size: 24px;
+    color: rgb(33, 33, 33);
+}

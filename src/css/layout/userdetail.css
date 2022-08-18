@@ -2,7 +2,7 @@
     position: absolute;
     top: -2px;
     right: 0;
-    height: 101%;
+    height: 100%;
     width: 40%;
     background-color: #fff;
     box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
@@ -23,6 +23,70 @@
 .ms-row {
     clear: both;
     flex-flow: wrap;
+}
+
+.content-detail {
+    display: flex;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 0px;
+    padding: 0px;
+    margin-bottom: 16px;
+}
+
+.col-16 {
+    margin-left: 0%;
+    width: 16.6667%;
+}
+
+.col-75 {
+    margin-left: 0%;
+    width: 75%;
+}
+
+.col-29 {
+    margin-left: 0%;
+    width: 29.1667%;
+}
+
+.col-50 {
+    margin-left: 0%;
+    width: 50%;
+}
+
+.border-detail {
+    border-bottom: 1px solid rgb(231, 232, 233);
+}
+
+.img-detail {
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 66px;
+    height: 66px;
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-detail {
+    display: flex;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 0px;
+    padding: 0px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+}
+
+.body-detail-1 {
+    display: flex;
+    width: 100%;
+    line-height: 35px;
+    text-indent: 0px;
+    padding: 0px;
+    margin-bottom: 16px;
 }
 
 .ms-col {
