@@ -71,6 +71,7 @@
                     width: 66px;
                     height: 66px;
                     font-size: 32px;
+                    font-weight: bold;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -164,7 +165,7 @@ import MsButton from "../base/MsButton.vue";
 export default {
   data() {
     return {
-      checks: [false, false, false, false],
+      checks: [],
       selectedUser: {},
       roleNameArr: [],
       role:[],
@@ -188,6 +189,7 @@ export default {
     closePopupEdit() {
       this.$emit("CloseEditPopup", false);
     },
+    
     /**
      * Author: THBAC (17/8/2022)
      * Chuyển đổi lại mảng roleName
@@ -196,34 +198,31 @@ export default {
       if (array == null) {
         return;
       } else {
+        console.log(this.role[0].roleName);
         this.roleNameArr = array.split(", ");
-        if (this.roleNameArr.includes("Quản lý")) this.checks[0] = true;
-        if (this.roleNameArr.includes("Nhân viên")) this.checks[1] = true;
-        if (this.roleNameArr.includes("Người giám sát")) this.checks[2] = true;
-        if (this.roleNameArr.includes("Quản trị hệ thống"))
-          this.checks[3] = true;
-
-        for (let index = 0; index < this.roleNameArr.length; index++) {
-          if(this.roleNameArr[index].includes(this.role.roleName))
-              this.checks[index]=true;
+        for (let index = 0; index < this.role.length; index++) {
+          if(this.roleNameArr.includes(this.role[index].roleName))
+              this.checks.push(true);
+          else this.checks.push(false);
         }
       }
     },
   },
   props: { userSelected: {} },
-  created() {
-    try {
+ async created() {
+     try {
       var me = this;
-      axios.get("https://localhost:7256/api/v1/Role")
+     await axios.get("https://localhost:7256/api/v1/Role")
       .then(function(res){
           me.role=res.data;
-          console.log(res);
+          console.log(res.data);
       })
     } catch (error) {
       console.log(error);
     }
     this.selectedUser = this.userSelected;
     this.convertRoleName(this.userSelected.roleName);
+    console.log(this.userSelected.roleName);
 
   },
 };

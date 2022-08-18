@@ -832,6 +832,8 @@
   <TheUserDetail
     v-if="isShowDetail"
     @CloseDialog="showDetailPopup"
+    @OpenDel="showDelMess"
+    @DelUser="delDetail"
     :dataImg="dataImg"
   />
   <EditPopup
@@ -951,6 +953,17 @@ export default {
     };
   },
   methods: {
+    delDetail(id, name){
+        this.idDel=id;
+        this.nameDel=name;
+    },
+    showDelMess(show){
+      try {
+        this.isDelMsg = show;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     /**
      * Author: THBAC (17/8/2022)
      * Đồng ý xoá người dùng
@@ -1143,10 +1156,9 @@ export default {
      * @param {*} e
      */
     showDetail(e) {
-      if (e.rowType === "data") {
-        this.isShowDetail = true;
-      }
-      this.dataImg = e;
+      this.isShowDetail = true;
+      this.dataImg = e.data;
+      console.log(e);
     },
     /**
      * Author: THBAC (11/8/2022)
