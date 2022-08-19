@@ -1,7 +1,7 @@
 <template>
-  <div class="con-ms-popup">
+  <div class="con-ms-popup ">
     <div class="ms-popup--background"></div>
-    <div class="ms-popup flex flex-col">
+    <div class="ms-popup flex flex-col edit">
       <div class="h-53">
         <header class="ms-popup--header h-53">
           <div class="ms-popup--title">
@@ -38,15 +38,15 @@
         <div class="">
           <div class="item-wrap">
             <div class="flex items-center">
-              <div class="avatar m-r-8">
+              <div class="avatar">
                 <ProfileImg
                   :usercode="this.userSelected.userCode"
                   :username="this.userSelected.userName"
                   :key="this.userSelected.userCode"
-                  class="avatar img-detail"
+                  class="avatar img-detail-edit"
                 />
               </div>
-              <div class="user-information">
+              <div class="user-information text-info ">
                 <div>
                   <span
                     ><b>{{ this.userSelected.userName }}</b></span
@@ -72,7 +72,7 @@
             </p>
           </label>
           <br />
-          <div class="ms-row edit-row">
+          <div class="ms-row edit-row text-role">
             <div
               class="ms-col checkbox-detail"
               v-for="(rol, index) in role"

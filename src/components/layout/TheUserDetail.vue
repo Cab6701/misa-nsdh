@@ -8,7 +8,7 @@
             class="ms-row content-detail"
           >
             <div class="ms-col col-16">
-              <div class="m-r-8">
+              <div class="">
                 <ProfileImg
                   :usercode="dataImg.userCode"
                   :username="dataImg.userName"

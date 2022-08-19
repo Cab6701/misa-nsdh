@@ -1,18 +1,12 @@
 <template>
   <div class="ms-component con-ms-popup center ms-popup-primary">
     <div class="ms-popup--background"></div>
-    <div
-      class="ms-popup flex flex-col popup-s"
-    >
+    <div class="ms-popup flex flex-col popup-s">
       <div class="h-53">
         <header class="ms-popup--header h-53">
           <div class="ms-popup--title">
             <h2>
-              <span
-                class="mess-title"
-              >
-                Thêm người dùng
-              </span>
+              <span class="mess-title"> Thêm người dùng </span>
             </h2>
           </div>
           <div class="hover-show flex justify-between items-center"></div>
@@ -40,9 +34,7 @@
           </div>
         </header>
       </div>
-      <div
-        class="ms-popup--content popup-content-1"
-      >
+      <div class="ms-popup--content popup-content-1">
         <div class="flex header-custom"></div>
         <div class="w-full grid-paging">
           <div class="grid-container">
@@ -73,38 +65,71 @@
                       Trạng thái<span class="required"> * </span>
                     </th>
                   </thead>
-                  <tbody v-for="(item,index) in array" :key="index">
+                  <tbody v-for="(item, index) in array" :key="index">
                     <tr>
-                      <td>{{index}}</td>
+                      <td>{{ index+1 }}</td>
                       <td>
-                        <input ref="userCodeRef" class="ms-input table-input input-addnew" type="text" v-model="user.userCode"/>
+                        <input
+                          ref="userCodeRef"
+                          class="ms-input table-input input-addnew"
+                          type="text"
+                          v-model="listUser[index].userCode"
+                        />
                       </td>
                       <td>
-                        <input class="ms-input table-input input-addnew" type="text" v-model="user.userName"/>
+                        <input
+                          class="ms-input table-input input-addnew"
+                          type="text"
+                          v-model="listUser[index].userName"
+                        />
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn phòng ban" :items="departmentArr" v-model="user.userDepartment"/>
+                        <DxSelectBox
+                          placeholder="Chọn phòng ban"
+                          :data-source="departmentArr"
+                          display-expr="departmentName"
+                          value-expr="departmentID"
+                          v-model="listUser[index].departmentID"
+                        />
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn vị trí" :items="positionArr"/>
+                        <DxSelectBox
+                          placeholder="Chọn vị trí"
+                          :data-source="positionArr"
+                          display-expr="positionName"
+                          value-expr="positionID"
+                          v-model="listUser[index].positionID"
+                        />
                       </td>
                       <td>
-                        <input class="ms-input table-input input-addnew" type="text" v-model="user.email"/>
+                        <input
+                          class="ms-input table-input input-addnew"
+                          type="text"
+                          v-model="listUser[index].email"
+                        />
                       </td>
                       <td>
                         <DxTagBox
-                          :data-source="roleArray"
                           :search-enabled="true"
                           height="36px"
                           width="340px"
                           placeholder="Chọn vai trò"
                           :accept-custom-value="false"
                           :multiline="false"
+                          :data-source="roleArr"
+                          display-expr="roleName"
+                          value-expr="roleID"
+                          v-model="listUser[index].roleID"
                         />
-
                       </td>
                       <td>
-                        <DxSelectBox placeholder="Chọn trạng thái" :items="statusArr.statusName"/>
+                        <DxSelectBox
+                          placeholder="Chọn trạng thái"
+                          :data-source="statusArr"
+                          display-expr="statusName"
+                          value-expr="ID"
+                          v-model="listUser[index].status"
+                        />
                       </td>
                     </tr>
                   </tbody>
@@ -143,124 +168,147 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
-      array:1,
+      array: 1,
       roles: [],
-      departments:[],
-      positions:[],
-      statuschos:[],
-      departmentArr:[],
-      positionArr:[],
-      statusArr:[
+      departments: [],
+      positions: [],
+      statuschos: [],
+      departmentArr: [],
+      positionArr: [],
+      statusArr: [
         {
-          ID:0,
-          statusName:"Đang hoạt động"
+          ID: 0,
+          statusName: "Đang hoạt động",
         },
         {
-          ID:1,
-          statusName:"Chờ xác nhận"
+          ID: 1,
+          statusName: "Chờ xác nhận",
         },
         {
-          ID:2,
-          statusName:"Chưa kích hoạt"
+          ID: 2,
+          statusName: "Chưa kích hoạt",
         },
         {
-          ID:3,
-          statusName:"Ngừng kích hoạt"
-        }
+          ID: 3,
+          statusName: "Ngừng kích hoạt",
+        },
       ],
-      roleArr:[],
-      user:{
-        userCode:"NV-12688",
-        userName: "Trịnh Toang Hoàng",
-        departmentID : "469b3ece-744a-45d5-957d-e8c757976496",
-        positionID: "3304dddb-1b72-607f-25c2-579daad24557",
-        roleID: ["674934cc-42cf-20cf-1d4a-aea48a10ed18"],
-        email:"avc@gmail.com",
-        status:0,
-      },
-      listUser:[]
-    }
+      roleArr: [],
+      // user: {
+      //   userCode: "NV-12688",
+      //   userName: "Trịnh Toang Hoàng",
+      //   departmentID: "469b3ece-744a-45d5-957d-e8c757976496",
+      //   positionID: "3304dddb-1b72-607f-25c2-579daad24557",
+      //   roleID: ["674934cc-42cf-20cf-1d4a-aea48a10ed18"],
+      //   email: "avc@gmail.com",
+      //   status: 0,
+      // },
+      listUser: [],
+    };
   },
   methods: {
     /**
      * Author: THBAC (18/8/2022)
      * Nút lưu để thêm mới user
      */
-    btnaddNew(){
-        try {
-          this.listUser.push(this.user)
-          console.log(this.user);
-          axios.post("https://localhost:7256/api/v1/User/InsertUsers",this.listUser)
-          .then(function(res){
+    btnaddNew() {
+      try {
+        // this.listUser.push(this.user);
+        console.log(this.user);
+        axios
+          .post("https://localhost:7256/api/v1/User/InsertUsers", this.listUser)
+          .then(function (res) {
             console.log(res);
-          })
-        } catch (error) {
-          console.log(error);
-        }
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (10/8/2022)
      * Nút thêm dòng mới
      */
-    addRow(){
-      this.array+=1;
+    addRow() {
+      this.array += 1;
+      var userAdd = {};
+          userAdd.roleID = [];
+          userAdd.userCode = "";
+          userAdd.userName = "";
+          userAdd.departmentID = "";
+          userAdd.positionID = "";
+          userAdd.email = "";
+          userAdd.status = null;
+          // Thêm người dùng vào trong mảng
+          this.listUser.push(userAdd);
+          // this.$refs.dataGridAddUser.instance.refresh(true);
     },
     /**
      * Author: THBAC (10/8/2022)
      * Đóng form thêm mới nhân viên
      */
-    closeAddNew(){
-        this.$emit("CloseAddNewPopup",false);
+    closeAddNew() {
+      this.$emit("CloseAddNewPopup", false);
+    },
+  },
+  async created() {
+    var me = this;
+    this.$nextTick(() => this.$refs.userCodeRef[0].focus());
+
+    var userAdd = {};
+          userAdd.roleID = [];
+          userAdd.userCode = "";
+          userAdd.userName = "";
+          userAdd.departmentID = "";
+          userAdd.positionID = "";
+          userAdd.email = "";
+          userAdd.status = null;
+          // Thêm người dùng vào trong mảng
+          this.listUser.push(userAdd);
+
+    //Lấy dữ liệu phòng ban
+    await axios
+      .get("https://localhost:7256/api/v1/Department")
+      .then(function (res) {
+        me.departments = res.data;
+        console.log(res);
+      });
+
+    //Lấy dữ liệu vị trí
+    await axios
+      .get("https://localhost:7256/api/v1/Positions")
+      .then(function (res) {
+        me.positions = res.data;
+        console.log(res);
+      });
+
+    //Lấy dữ liệu vai trò
+    await axios.get("https://localhost:7256/api/v1/Role").then(function (res) {
+      me.roles = res.data;
+      console.log(res);
+    });
+
+    //Lấy dữ liệu user
+    await axios.get("https://localhost:7256/api/v1/User").then(function (res) {
+      me.statuschos = res.data;
+      console.log(res);
+    });
+
+    for (let index = 0; index < this.departments.length; index++) {
+      this.departmentArr.push(this.departments[index]);
     }
+
+    for (let index = 0; index < this.positions.length; index++) {
+      this.positionArr.push(this.positions[index]);
+    }
+
+    for (let index = 0; index < this.roles.length; index++) {
+      this.roleArr.push(this.roles[index]);
+    }
+    console.log(this.roleArr);
   },
- async created() {
-      var me=this;
-      this.$nextTick(() => this.$refs.userCodeRef[0].focus());
-
-      //Lấy dữ liệu phòng ban
-     await axios.get("https://localhost:7256/api/v1/Department")
-      .then(function (res) {
-          me.departments=res.data;
-          console.log(res);
-      })
-
-      //Lấy dữ liệu vị trí
-      await axios.get("https://localhost:7256/api/v1/Positions")
-      .then(function (res) {
-          me.positions=res.data;
-          console.log(res);
-      })
-
-      //Lấy dữ liệu vai trò
-      await axios.get("https://localhost:7256/api/v1/Role")
-      .then(function (res) {
-          me.roles=res.data;
-          console.log(res);
-      })
-
-      //Lấy dữ liệu user
-      await axios.get("https://localhost:7256/api/v1/User")
-      .then(function (res) {
-          me.statuschos=res.data;
-          console.log(res);
-      })
-
-      for (let index = 0; index < this.departments.length; index++) {
-            this.departmentArr.push(this.departments[index].departmentName);
-        }
-
-        for (let index = 0; index < this.positions.length; index++) {
-            this.positionArr.push(this.positions[index].positionName);
-        }
-
-        for (let index = 0; index < this.roles.length; index++) {
-            this.roleArr.push(this.roles[index].roleName);
-        }
-
-  },
-}
+};
 </script>

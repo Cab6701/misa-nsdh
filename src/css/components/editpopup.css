@@ -34,6 +34,29 @@
     overflow: visible;
 }
 
+.edit {
+    width: 600px !important;
+}
+
+.img-detail-edit {
+    border-radius: 50%;
+    width: 66px !important;
+    height: 66px !important;
+    font-size: 32px !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-info {
+    color: #1f1f20;
+}
+
+.text-role {
+    color: #212121;
+}
+
 .ms-popup--header,
 .ms-popup--subheader {
     width: 100%;

@@ -24,7 +24,7 @@
 .con-ms-popup .ms-popup {
     position: relative;
     z-index: 100;
-    width: 600px;
+    width: 992px;
     max-width: calc(100% - 30px);
     max-height: calc(100% - 4px);
     border-radius: 6px;

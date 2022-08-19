@@ -61,9 +61,10 @@
 .img-detail {
     border-radius: 50%;
     margin-top: 10px;
-    width: 66px;
-    height: 66px;
-    font-size: 32px;
+    margin-right: 0 !important;
+    width: 66px !important;
+    height: 66px !important;
+    font-size: 32px !important;
     font-weight: bold;
     display: flex;
     align-items: center;
