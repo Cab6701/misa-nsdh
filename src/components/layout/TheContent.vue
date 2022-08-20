@@ -745,14 +745,14 @@
                         <div class="grid-navigation">
                           <div class="page-total flex">
                             Tổng số bản ghi:
-                            <b class="p-0-6"> {{ this.totalPage }}</b>
+                            <b class="p-0-6"> {{ this.totalPage.totalRecord }}</b>
                           </div>
                           <div class="page-size-selector flex items-center">
                             <div class="m-r-8">Số bản ghi</div>
                           </div>
-                          <DropDown />
+                          <DropDown @sizeChange="sizeChange"/>
                           <div class="page-info">
-                            <b>1</b> - <b>15</b> bản ghi
+                            <b>{{this.totalPage.recordStart}}</b> - <b>{{this.totalPage.recordEnd}}</b> bản ghi
                           </div>
                           <div class="page-next-preview">
                             <div class="page-paging-icon ms-row m-0">
@@ -935,6 +935,30 @@ export default {
     };
   },
   methods: {
+    /**
+     *  Author: THBAC (20/8/82022)
+     * Thay đổi số lượng bản ghi
+     */
+    async sizeChange(size){
+      var me = this;
+      this.pageSize=size;
+      await axios
+        .get(
+          `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+        )
+        .then(function (res) {
+          me.isLoading = false;
+          me.users = res.data.data;
+          me.totalPage = res.data;
+        })
+        .catch(function (res) {
+          console.log(res);
+        });
+    },
+    /**
+     * Author: THBAC (20/8/82022)
+     * Hàm lọc người dùng
+     */
     filter() {
       try {
         var me = this;
@@ -955,10 +979,20 @@ export default {
         console.log(error);
       }
     },
+    /**
+     * Author: THBAC (20/8/82022)
+     * Hàm gắn id và tên để hiển thị và gắn cho form xoá
+     * @param {*} id 
+     * @param {*} name 
+     */
     delDetail(id, name) {
       this.idDel = id;
       this.nameDel = name;
     },
+    /**
+     * Author: THBAC (20/8/82022)
+     * Hiển thị form xoá người dùng
+     */
     showDelMess(show) {
       try {
         this.isDelMsg = show;
@@ -1000,6 +1034,7 @@ export default {
           .then(function (res) {
             me.isLoading = false;
             me.users = res.data.data;
+            me.totalPage=res.data;
             console.log(res);
           })
           .catch(function (res) {
@@ -1028,7 +1063,7 @@ export default {
         )
         .then(function (res) {
           me.isLoading = false;
-          me.pagingData=res.data;
+          me.totalPage=res.data;
           me.users = res.data.data;
           console.log(res);
         })
@@ -1206,7 +1241,7 @@ export default {
               )
               .then(function (res) {
                 me.users = res.data.data;
-                me.totalPage = res.data.totalRecord;
+                me.totalPage = res.data;
                 console.log(res);
               })
               .catch(function (res) {
@@ -1231,8 +1266,7 @@ export default {
         .then(function (res) {
           me.isLoading = false;
           me.users = res.data.data;
-          me.totalPage = res.data.totalRecord;
-          console.log(me.pagingData);
+          me.totalPage = res.data;
         })
         .catch(function (res) {
           console.log(res);

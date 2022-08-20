@@ -71,11 +71,12 @@ export default {
     /**
      * Author: THBAC (12/8/2022)
      * Hàm chọn các thành phần con
-     * @param {*} indexSelect 
+     * @param {*} indexSelect
      */
     setActive(indexSelect) {
       this.selected = indexSelect;
       this.isShow = !this.isShow;
+      this.$emit("sizeChange",indexSelect);
     },
     /**
      * Author: THBAC (12/8/2022)
@@ -88,18 +89,21 @@ export default {
     /**
      * Author: THBAC (12/8/2022)
      * Tắt khi click ra ngoài
-     * @param {*} e 
+     * @param {*} e
      */
     close(e) {
       if (!this.$el.contains(e.target)) {
         this.isShow = false;
       }
-    }
+    },
+  },
+  props: {
+    pageIndex: Number,
   },
   created() {
     window.addEventListener("click", this.close);
   },
-    beforeUnmount() {
+  beforeUnmount() {
     window.removeEventListener("click", this.close);
   },
 };
