@@ -152,7 +152,7 @@ table {
     border-collapse: collapse;
 }
 
-table th:not(:first-child)::before {
+table th:not(:first-child, :last-child)::before {
     content: "";
     position: absolute;
     top: 30%;
@@ -168,4 +168,22 @@ table th:not(:first-child)::before {
     font-family: Misa Fonts Regular;
     font-size: 14px;
     line-height: 0;
+}
+
+tr:hover .icon-hidden {
+    display: block;
+}
+
+tr:hover .sticky-right {
+    background-color: #dbf4ff;
+}
+
+tr:hover {
+    background-color: #dbf4ff;
+}
+
+.sticky-right {
+    position: sticky;
+    right: 0;
+    z-index: 200;
 }

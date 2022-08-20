@@ -3,10 +3,10 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 232px;
+    bottom: 104px;
+    left: 218px;
+    right: 24px;
     background-color: #b2adad4f;
     z-index: 100;
 }

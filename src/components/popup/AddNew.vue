@@ -40,7 +40,7 @@
           <div class="grid-container">
             <div id="datagrid" class="h-full">
               <div class="table-content">
-                <table>
+                <table ref="tableAddNew">
                   <thead class="thead-table">
                     <th class="number">STT</th>
                     <th class="u-code">
@@ -64,10 +64,11 @@
                     <th class="u-status">
                       Trạng thái<span class="required"> * </span>
                     </th>
+                    <th></th>
                   </thead>
-                  <tbody v-for="(item, index) in array" :key="index">
+                  <tbody v-for="(item, index) in this.listUser" :key="index">
                     <tr>
-                      <td>{{ index+1 }}</td>
+                      <td>{{ index + 1 }}</td>
                       <td>
                         <input
                           ref="userCodeRef"
@@ -131,6 +132,18 @@
                           v-model="listUser[index].status"
                         />
                       </td>
+                      <td class="sticky-right">
+                        <div class="flex justify-flexend m-8 sticky-right">
+                          <div class="style-button">
+                            <div class="button-comand-wrap">
+                              <div
+                                class="icon-delete-custom icon-hidden "
+                                @click="deleteRow(index)"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -172,7 +185,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      array: 1,
       roles: [],
       departments: [],
       positions: [],
@@ -198,19 +210,19 @@ export default {
         },
       ],
       roleArr: [],
-      // user: {
-      //   userCode: "NV-12688",
-      //   userName: "Trịnh Toang Hoàng",
-      //   departmentID: "469b3ece-744a-45d5-957d-e8c757976496",
-      //   positionID: "3304dddb-1b72-607f-25c2-579daad24557",
-      //   roleID: ["674934cc-42cf-20cf-1d4a-aea48a10ed18"],
-      //   email: "avc@gmail.com",
-      //   status: 0,
-      // },
       listUser: [],
+      newCode:0,
     };
   },
   methods: {
+    /**
+     * Author: THBAC (19/8/2022)
+     * Xoá dòng
+     * @param {*} index 
+     */
+    deleteRow(index){
+        this.listUser.splice(index,1);
+    },
     /**
      * Author: THBAC (18/8/2022)
      * Nút lưu để thêm mới user
@@ -233,18 +245,17 @@ export default {
      * Nút thêm dòng mới
      */
     addRow() {
-      this.array += 1;
       var userAdd = {};
-          userAdd.roleID = [];
-          userAdd.userCode = "";
-          userAdd.userName = "";
-          userAdd.departmentID = "";
-          userAdd.positionID = "";
-          userAdd.email = "";
-          userAdd.status = null;
-          // Thêm người dùng vào trong mảng
-          this.listUser.push(userAdd);
-          // this.$refs.dataGridAddUser.instance.refresh(true);
+      userAdd.roleID = [];
+      userAdd.userCode = "";
+      userAdd.userName = "";
+      userAdd.departmentID = "";
+      userAdd.positionID = "";
+      userAdd.email = "";
+      userAdd.status = null;
+
+      this.listUser.push(userAdd);
+
     },
     /**
      * Author: THBAC (10/8/2022)
@@ -256,18 +267,23 @@ export default {
   },
   async created() {
     var me = this;
+    await axios.get("https://localhost:7256/api/v1/User/newUserCode")
+    .then(function(res){
+      me.newCode=res.data;
+      console.log(res);
+    })
     this.$nextTick(() => this.$refs.userCodeRef[0].focus());
 
     var userAdd = {};
-          userAdd.roleID = [];
-          userAdd.userCode = "";
-          userAdd.userName = "";
-          userAdd.departmentID = "";
-          userAdd.positionID = "";
-          userAdd.email = "";
-          userAdd.status = null;
-          // Thêm người dùng vào trong mảng
-          this.listUser.push(userAdd);
+    userAdd.roleID = [];
+    userAdd.userCode = this.newCode.toString();
+    userAdd.userName = "";
+    userAdd.departmentID = "";
+    userAdd.positionID = "";
+    userAdd.email = "";
+    userAdd.status = null;
+
+    this.listUser.push(userAdd);
 
     //Lấy dữ liệu phòng ban
     await axios
@@ -297,6 +313,7 @@ export default {
       console.log(res);
     });
 
+
     for (let index = 0; index < this.departments.length; index++) {
       this.departmentArr.push(this.departments[index]);
     }
@@ -308,7 +325,6 @@ export default {
     for (let index = 0; index < this.roles.length; index++) {
       this.roleArr.push(this.roles[index]);
     }
-    console.log(this.roleArr);
   },
 };
 </script>

@@ -17,13 +17,9 @@
                 />
               </div>
             </div>
-            <div
-              class="content-main"
-            >
+            <div class="content-main">
               <div class="h-full w-full">
-                <div
-                  class="flex items-center w-full bg-white h-60"
-                >
+                <div class="flex items-center w-full bg-white h-60">
                   <span class="input-search-user">
                     <div class="m-l-12">
                       <div class="input-contain">
@@ -47,6 +43,8 @@
                               tabindex="1"
                               type="text"
                               class="ms-input-item"
+                              v-model="filterString"
+                              @keyup="filter()"
                             />
                           </div>
                         </div>
@@ -449,7 +447,6 @@
                                               opacity-0
                                               cursor-scroll
                                             "
-                                           
                                           >
                                             <i
                                               class="
@@ -514,7 +511,6 @@
                                               opacity-0
                                               cursor-scroll
                                             "
-                                          
                                           >
                                             <i
                                               class="
@@ -579,7 +575,6 @@
                                               opacity-0
                                               cursor-scroll
                                             "
-                                      
                                           >
                                             <i
                                               class="
@@ -622,9 +617,7 @@
                 <div class="custom-paging-grid">
                   <div class="grid-container">
                     <div id="datagrid" class="h-full">
-                      <div
-                        class="datagrid"
-                      >
+                      <div class="datagrid">
                         <DxDataGrid
                           id="gridContainer"
                           :data-source="users"
@@ -752,9 +745,7 @@
                         <div class="grid-navigation">
                           <div class="page-total flex">
                             Tổng số bản ghi:
-                            <b class="p-0-6">
-                              {{ this.totalPage }}</b
-                            >
+                            <b class="p-0-6"> {{ this.totalPage }}</b>
                           </div>
                           <div class="page-size-selector flex items-center">
                             <div class="m-r-8">Số bản ghi</div>
@@ -804,6 +795,7 @@
                                     btn-icon-1
                                   "
                                   @click="nextPage"
+                                  :class="{ 'opacity-05': this.isEnd == true}"
                                 >
                                   <i class="mi-chevron-right"></i>
                                 </div>
@@ -816,9 +808,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="m-l-16 resize1 dx-resizable"
-              ></div>
+              <div class="m-l-16 resize1 dx-resizable"></div>
             </div>
           </div>
         </div>
@@ -848,11 +838,7 @@
           <header class="ms-popup--header h-53">
             <div class="ms-popup--title">
               <h2>
-                <span
-                  
-                  class="mess-title"
-                  >Xoá người dùng</span
-                >
+                <span class="mess-title">Xoá người dùng</span>
               </h2>
             </div>
             <div class="hover-show flex justify-between items-center"></div>
@@ -944,14 +930,36 @@ export default {
       filterString: "",
       totalPage: 0,
       userSelected: {},
+      pagingData:{},
+      isEnd:false,
     };
   },
   methods: {
-    delDetail(id, name){
-        this.idDel=id;
-        this.nameDel=name;
+    filter() {
+      try {
+        var me = this;
+        me.isLoading = true;
+        axios
+          .get(
+            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+          )
+          .then(function (res) {
+            me.isLoading = false;
+            me.users = res.data.data;
+            console.log(res);
+          })
+          .catch(function (res) {
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
-    showDelMess(show){
+    delDetail(id, name) {
+      this.idDel = id;
+      this.nameDel = name;
+    },
+    showDelMess(show) {
       try {
         this.isDelMsg = show;
       } catch (error) {
@@ -1004,6 +1012,13 @@ export default {
      * Nút ấn sang trang sau
      */
     nextPage() {
+      if(this.pagingData.recordEnd>this.pagingData.totalRecord)
+      {
+          this.isEnd=true;
+          console.log(this.pagingData.recordEnd);
+      }
+      else{
+      this.isEnd=false;
       this.pageIndex = this.pageIndex + 1;
       var me = this;
       this.isLoading = true;
@@ -1013,12 +1028,14 @@ export default {
         )
         .then(function (res) {
           me.isLoading = false;
+          me.pagingData=res.data;
           me.users = res.data.data;
           console.log(res);
         })
         .catch(function (res) {
           console.log(res);
         });
+        }
     },
     /**
      * Author: THBAC (17/8/2022)
@@ -1215,7 +1232,7 @@ export default {
           me.isLoading = false;
           me.users = res.data.data;
           me.totalPage = res.data.totalRecord;
-          console.log(res);
+          console.log(me.pagingData);
         })
         .catch(function (res) {
           console.log(res);
