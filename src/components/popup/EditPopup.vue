@@ -1,5 +1,5 @@
 <template>
-  <div class="con-ms-popup ">
+  <div class="con-ms-popup">
     <div class="ms-popup--background"></div>
     <div class="ms-popup flex flex-col edit">
       <div class="h-53">
@@ -46,7 +46,7 @@
                   class="avatar img-detail-edit"
                 />
               </div>
-              <div class="user-information text-info ">
+              <div class="user-information text-info">
                 <div>
                   <span
                     ><b>{{ this.userSelected.userName }}</b></span
@@ -128,6 +128,12 @@ export default {
   },
   components: { MsButton },
   methods: {
+    btnEdit() {
+      axios.put(
+        "https://localhost:7256/api/v1/UserRole/UpdateUserRole",
+        this.role
+      );
+    },
     /**
      * Author: THBAC (11/8/2022)
      * Hàm ccheckbox
@@ -153,12 +159,11 @@ export default {
       if (array == null) {
         return;
       } else {
-        console.log(this.role[0].roleName);
         this.roleNameArr = array.split(", ");
         for (let index = 0; index < this.role.length; index++) {
-          if (this.roleNameArr.includes(this.role[index].roleName))
+          if (this.roleNameArr.includes(this.role[index].roleName)) {
             this.checks.push(true);
-          else this.checks.push(false);
+          } else this.checks.push(false);
         }
       }
     },
