@@ -78,23 +78,41 @@
                     <tr>
                       <td>{{ index + 1 }}</td>
                       <td>
-                        <input
-                          ref="userCodeRef"
-                          class="ms-input table-input input-addnew"
-                          type="text"
-                          maxlength="20"
-                          v-model="listUser[index].userCode"
-                          :class="{ error: validate(listUser[index].userCode) }"
-                        />
+                        <div
+                          :class="{
+                            error: validate(listUser[index].userCode),
+                          }"
+                        >
+                          <input
+                            ref="userCodeRef"
+                            class="ms-input table-input input-addnew"
+                            type="text"
+                            maxlength="20"
+                            v-model="listUser[index].userCode"
+                            :class="{
+                              error: validate(listUser[index].userCode),
+                            }"
+                          />
+                          <title class="msgVal">Mã trống</title>
+                        </div>
                       </td>
                       <td>
-                        <input
-                          class="ms-input table-input input-addnew"
-                          type="text"
-                          maxlength="100"
-                          v-model="listUser[index].userName"
-                          :class="{ error: validate(listUser[index].userName) }"
-                        />
+                        <div
+                          :class="{
+                            error: validate(listUser[index].userName),
+                          }"
+                        >
+                          <input
+                            class="ms-input table-input input-addnew"
+                            type="text"
+                            maxlength="100"
+                            v-model="listUser[index].userName"
+                            :class="{
+                              error: validate(listUser[index].userName),
+                            }"
+                          />
+                          <title class="msgVal">Tên trống</title>
+                        </div>
                       </td>
                       <td>
                         <div
@@ -109,6 +127,7 @@
                             value-expr="departmentID"
                             v-model="listUser[index].departmentID"
                           />
+                          <title class="msgVal">Phòng ban trống</title>
                         </div>
                       </td>
                       <td>
@@ -124,16 +143,26 @@
                             value-expr="positionID"
                             v-model="listUser[index].positionID"
                           />
+                          <title class="msgVal">Vị trí trống</title>
                         </div>
                       </td>
                       <td>
-                        <input
-                          class="ms-input table-input input-addnew"
-                          type="text"
-                          maxlength="100"
-                          v-model="listUser[index].email"
-                          :class="{ error: validateEmail(listUser[index].email) }"
-                        />
+                        <div
+                          :class="{
+                            error: validate(listUser[index].email),
+                          }"
+                        >
+                          <input
+                            class="ms-input table-input input-addnew"
+                            type="text"
+                            maxlength="100"
+                            v-model="listUser[index].email"
+                            :class="{
+                              error: validateEmail(listUser[index].email),
+                            }"
+                          />
+                          <title class="msgVal">Email trống</title>
+                        </div>
                       </td>
                       <td>
                         <div
@@ -151,6 +180,7 @@
                             value-expr="roleID"
                             v-model="listUser[index].roleID"
                           />
+                          <title class="msgVal">Vai trò trống</title>
                         </div>
                       </td>
                       <td>
@@ -166,6 +196,7 @@
                             value-expr="ID"
                             v-model="listUser[index].status"
                           />
+                          <title class="msgVal">Trạng thái trống</title>
                         </div>
                       </td>
                       <td class="sticky-right">
@@ -203,8 +234,8 @@
             class="box-item"
             effect="dark"
             content="Huỷ"
-            placement="bottom"
-            hide-after="0"
+            placement="top"
+            :hide-after="0"
           >
             <MsButton
               :styleButton="'btn-cancel m-r-12 '"
@@ -217,7 +248,7 @@
             class="box-item"
             effect="dark"
             content="Lưu"
-            placement="bottom"
+            placement="top"
             hide-after="0"
           >
             <MsButton
@@ -238,9 +269,12 @@ export default {
   data() {
     return {
       roles: [],
-      isFail: false,
+      isFail1: false,
+      isFail2: false,
+      isFail3: false,
       checkValidate: 0,
       indexArr: 0,
+      message: false,
       validCode: false,
       validName: false,
       validEmail: false,
@@ -279,9 +313,16 @@ export default {
      */
     validateEmail(email) {
       var regex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
-      if (email.length<1 && !email.match(regex) && this.checkValidate == 1) {
+      if (email.length < 1 && this.checkValidate == 1) {
+        this.isFail1 = true;
         return true;
+      } else {
+        if (!email.match(regex) && this.checkValidate == 1) {
+          this.isFail1 = true;
+          return true;
+        }
       }
+      this.isFail1 = false;
       return false;
     },
     /**
@@ -289,7 +330,11 @@ export default {
      * Hàm validate số
      */
     validateNumber(number) {
-      if (number == null && this.checkValidate == 1) return true;
+      if (number == null && this.checkValidate == 1) {
+        this.isFail2 = true;
+        return true;
+      }
+      this.isFail2 = false;
       return false;
     },
     /**
@@ -298,8 +343,10 @@ export default {
      */
     validate(index) {
       if (index.length < 1 && this.checkValidate == 1) {
+        this.isFail3 = true;
         return true;
       }
+      this.isFail3 = false;
       return false;
     },
     /**
@@ -320,16 +367,25 @@ export default {
      */
     btnaddNew() {
       try {
+        var me = this;
         this.checkValidate = 1;
-        // if(this.validate()==false && this.validateNumber()==false)
-        // {
-        //   return;
-        // }else{
-        axios
-          .post("https://localhost:7256/api/v1/User/InsertUsers", this.listUser)
-          .then(function (res) {
-            console.log(res);
-          });
+        if (
+          this.isFail3 == true ||
+          this.isFail2 == true ||
+          this.isFail1 == true
+        ) {
+          return;
+        } else {
+          axios
+            .post(
+              "https://localhost:7256/api/v1/User/InsertUsers",
+              this.listUser
+            )
+            .then(function (res) {
+              me.$emit("CloseAddNewPopup", false);
+              console.log(res);
+            });
+        }
       } catch (error) {
         console.log(error);
       }

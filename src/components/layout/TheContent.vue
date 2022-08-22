@@ -1273,6 +1273,7 @@ export default {
     showAddNew(Show) {
       try {
         this.isShowAddNew = Show;
+        this.reload();
         console.log(Show);
       } catch (error) {
         console.log(error);
