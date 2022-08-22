@@ -10,15 +10,15 @@
               <div class="menu-item-name">Lượt chạy</div>
               <div class=""></div>
             </div>
-            <div class="menu-item h-full" >
+            <div class="menu-item h-full">
               <div class="menu-item-name">Thiết kế quy trình</div>
               <div class=""></div>
             </div>
-            <div class="menu-item h-full" >
+            <div class="menu-item h-full">
               <div class="menu-item-name">Báo cáo</div>
               <div class=""></div>
             </div>
-            <div class="menu-item h-full" >
+            <div class="menu-item h-full">
               <div class="menu-item-name">Thiết lập</div>
               <div class="menu-item-active"></div>
             </div>
@@ -46,13 +46,32 @@
             />
           </div>
         </div>
-        <div class="notify"></div>
+        <div class="pos-relative">
+            <div class="notifi-unread-count">4</div>
+          <div class="notify"></div>
+        </div>
+        
         <div class="right-action user">
           <div class="user-avatar">
-            <div class="apui-user-avatar myavt"></div>
+            <!-- <div class="apui-user-avatar myavt"></div> -->
+            <ProfileImg
+              :usercode="this.usercode"
+              :username="this.username"
+              class="apui-user-avatar"
+            />
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      username:"Trịnh Hoài Bắc",
+      usercode:"NV-67201"
+    }
+  },
+}
+</script>

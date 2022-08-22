@@ -156,39 +156,51 @@ export default {
      * Nút lưu để cập nhật vai trò người dùng
      */
     btnEdit() {
-      var me = this;
-      axios.put(
-        "https://localhost:7256/api/v1/UserRole/UpdateUserRole",
-        this.userRole
-      )
-      .then(function(res){
-          
-          me.$emit("CloseEditPopup", false);
-          me.$emit("updatedUser",true);
-          console.log(res);
-      });
+      try {
+        var me = this;
+        axios
+          .put(
+            "https://localhost:7256/api/v1/UserRole/UpdateUserRole",
+            this.userRole
+          )
+          .then(function (res) {
+            me.$emit("CloseEditPopup", false);
+            me.$emit("updatedUser", true);
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
-    
+
     /**
      * Author: THBAC (11/8/2022)
      * Hàm ccheckbox
      */
     check(input) {
-      if (this.checks[input]) {
-        this.checks[input] = false;
-        this.userRole[input].status = 2;
-      } else {
-        this.checks[input] = true;
-        this.userRole[input].status = 1;
+      try {
+        if (this.checks[input]) {
+          this.checks[input] = false;
+          this.userRole[input].status = 2;
+        } else {
+          this.checks[input] = true;
+          this.userRole[input].status = 1;
+        }
+        console.log(this.userRole);
+      } catch (error) {
+        console.log(error);
       }
-      console.log(this.userRole);
     },
     /**
      * Author: THBAC (11/8/2022)
      * Hàm đóng form
      */
     closePopupEdit() {
-      this.$emit("CloseEditPopup", false);
+      try {
+        this.$emit("CloseEditPopup", false);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     /**
@@ -196,21 +208,25 @@ export default {
      * Chuyển đổi lại mảng roleName
      */
     convertRoleName(array) {
-      if (array == null) {
-        return;
-      } else {
-        this.roleNameArr = array.split(", ");
-        for (let index = 0; index < this.role.length; index++) {
-          if (this.roleNameArr.includes(this.role[index].roleName)) {
-            this.checks.push(true);
-            this.userRole[index].status = 3;
-          } else {
-            this.checks.push(false);
-            this.userRole[index].status = 3;
+      try {
+        if (array == null) {
+          return;
+        } else {
+          this.roleNameArr = array.split(", ");
+          for (let index = 0; index < this.role.length; index++) {
+            if (this.roleNameArr.includes(this.role[index].roleName)) {
+              this.checks.push(true);
+              this.userRole[index].status = 3;
+            } else {
+              this.checks.push(false);
+              this.userRole[index].status = 3;
+            }
           }
         }
+        console.log(this.userRole);
+      } catch (error) {
+        console.log(error);
       }
-      console.log(this.userRole);
     },
   },
   props: { userSelected: {} },
@@ -236,7 +252,6 @@ export default {
 
     //Tích checkbox theo vai trò được chọn
     this.convertRoleName(this.userSelected.roleName);
-  
   },
 };
 </script>

@@ -18,7 +18,9 @@ import DxTagBox from 'devextreme-vue/tag-box';
 import { createRouter, createWebHistory } from 'vue-router';
 import GridUser from './components/layout/TheContent.vue';
 import KeyListener from './components/base/KeyListener.vue';
-import BLoading from './components/base/BLoading.vue'
+import BLoading from './components/base/BLoading.vue';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
 
 import {
@@ -44,7 +46,7 @@ const router = createRouter({
 })
 
 
-
+app.use(ElementPlus);
 app.component("BLoading", BLoading);
 app.component("KeyListener", KeyListener);
 app.component("MsButton", MsButton);

@@ -8,13 +8,21 @@
             <div class="content-header p-b-16 w-100">
               <div class="flex justify-between items-center header-custom">
                 <div class="font-20 bold">Người dùng</div>
-                <MsButton
-                  :styleButton="'ms-button-primary'"
-                  :msButtonText="'Thêm mới'"
-                  :isShowIcon="true"
-                  :iconButtonName="'icon-plus-white'"
-                  @click="addNewUser"
-                />
+                <el-tooltip
+                  class="box-item"
+                  effect="dark"
+                  content="Thêm mới người dùng"
+                  placement="bottom"
+                  hide-after="0"
+                >
+                  <MsButton
+                    :styleButton="'ms-button-primary'"
+                    :msButtonText="'Thêm mới'"
+                    :isShowIcon="true"
+                    :iconButtonName="'icon-plus-white'"
+                    @click="addNewUser"
+                  />
+                </el-tooltip>
               </div>
             </div>
             <div class="content-main">
@@ -86,25 +94,33 @@
                                     ms-popup--close-root
                                   "
                                 >
-                                  <div
-                                    class="
-                                      flex
-                                      items-center
-                                      justify-center
-                                      ms-popup--close
-                                      btn-icon-1
-                                    "
-                                    @click="closeCustomColumn"
+                                  <el-tooltip
+                                    class="box-item"
+                                    effect="dark"
+                                    content="Đóng"
+                                    placement="bottom"
+                                    hide-after="0"
                                   >
-                                    <i
+                                    <div
                                       class="
-                                        ms-icon
-                                        notranslate
-                                        icon-scale
-                                        mi-close-2
+                                        flex
+                                        items-center
+                                        justify-center
+                                        ms-popup--close
+                                        btn-icon-1
                                       "
-                                    ></i>
-                                  </div>
+                                      @click="closeCustomColumn"
+                                    >
+                                      <i
+                                        class="
+                                          ms-icon
+                                          notranslate
+                                          icon-scale
+                                          mi-close-2
+                                        "
+                                      ></i>
+                                    </div>
+                                  </el-tooltip>
                                 </div>
                               </div>
                               <div class="w-h-35">
@@ -1006,8 +1022,12 @@ export default {
      * @param {*} name
      */
     delDetail(id, name) {
-      this.idDel = id;
-      this.nameDel = name;
+      try {
+        this.idDel = id;
+        this.nameDel = name;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (20/8/82022)
@@ -1043,23 +1063,27 @@ export default {
      * Nút về trang trước
      */
     prevPage() {
-      if (this.pageIndex > 1) {
-        this.pageIndex = this.pageIndex - 1;
-        var me = this;
-        this.isLoading = true;
-        axios
-          .get(
-            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
-          )
-          .then(function (res) {
-            me.isLoading = false;
-            me.users = res.data.data;
-            me.totalPage = res.data;
-            console.log(res);
-          })
-          .catch(function (res) {
-            console.log(res);
-          });
+      try {
+        if (this.pageIndex > 1) {
+          this.pageIndex = this.pageIndex - 1;
+          var me = this;
+          this.isLoading = true;
+          axios
+            .get(
+              `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+            )
+            .then(function (res) {
+              me.isLoading = false;
+              me.users = res.data.data;
+              me.totalPage = res.data;
+              console.log(res);
+            })
+            .catch(function (res) {
+              console.log(res);
+            });
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
     /**
@@ -1067,27 +1091,31 @@ export default {
      * Nút ấn sang trang sau
      */
     nextPage() {
-      if (this.pagingData.recordEnd > this.pagingData.totalRecord) {
-        this.isEnd = true;
-        console.log(this.pagingData.recordEnd);
-      } else {
-        this.isEnd = false;
-        this.pageIndex = this.pageIndex + 1;
-        var me = this;
-        this.isLoading = true;
-        axios
-          .get(
-            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
-          )
-          .then(function (res) {
-            me.isLoading = false;
-            me.totalPage = res.data;
-            me.users = res.data.data;
-            console.log(res);
-          })
-          .catch(function (res) {
-            console.log(res);
-          });
+      try {
+        if (this.pagingData.recordEnd > this.pagingData.totalRecord) {
+          this.isEnd = true;
+          console.log(this.pagingData.recordEnd);
+        } else {
+          this.isEnd = false;
+          this.pageIndex = this.pageIndex + 1;
+          var me = this;
+          this.isLoading = true;
+          axios
+            .get(
+              `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+            )
+            .then(function (res) {
+              me.isLoading = false;
+              me.totalPage = res.data;
+              me.users = res.data.data;
+              console.log(res);
+            })
+            .catch(function (res) {
+              console.log(res);
+            });
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
     /**
@@ -1095,26 +1123,38 @@ export default {
      * chỉnh về mặc định hiển thị tât cả các cột
      */
     setDefault() {
-      this.checks = [true, true, true, true, true];
+      try {
+        this.checks = [true, true, true, true, true];
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (17/8/2022)
      * Nút áp dụng thay đổi các cột trong bảng
      */
     cusCol() {
-      this.isVisible = this.checks;
-      this.isCustomCol = false;
+      try {
+        this.isVisible = this.checks;
+        this.isCustomCol = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (12/8/2022)
      * Sự kiện ấn bàn phím
      */
     escClose(event) {
-      if (event.which == 27) {
-        this.isDelMsg = false;
-        this.isShowEdit = false;
-        this.isShowAddNew = false;
-        this.isShowDetail = false;
+      try {
+        if (event.which == 27) {
+          this.isDelMsg = false;
+          this.isShowEdit = false;
+          this.isShowAddNew = false;
+          this.isShowDetail = false;
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
     /**
@@ -1123,12 +1163,16 @@ export default {
      * @param {} event
      */
     deleteUser(event, data) {
-      event.preventDefault();
-      event.stopPropagation();
-      console.log(data);
-      this.isDelMsg = true;
-      this.nameDel = data.values[1];
-      this.idDel = data.key;
+      try {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log(data);
+        this.isDelMsg = true;
+        this.nameDel = data.values[1];
+        this.idDel = data.key;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
@@ -1136,45 +1180,65 @@ export default {
      * @param {} event
      */
     closeDeleteMsg() {
-      this.isDelMsg = false;
+      try {
+        this.isDelMsg = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Định dạng trạng thái
      */
     convertStatus(status) {
-      if (status == Benum.Status.Working) return "Đang hoạt động";
-      if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
-      if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
-      if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
+      try {
+        if (status == Benum.Status.Working) return "Đang hoạt động";
+        if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
+        if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
+        if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Hàm chuyển màu trạng thái
      */
     bgStatus(value) {
-      return {
-        working: value == Benum.Status.Working,
-        wcf: value == Benum.Status.WConfirm,
-        notactive: value == Benum.Status.NotActive,
-        deactive: value == Benum.Status.DeActivation,
-      };
+      try {
+        return {
+          working: value == Benum.Status.Working,
+          wcf: value == Benum.Status.WConfirm,
+          notactive: value == Benum.Status.NotActive,
+          deactive: value == Benum.Status.DeActivation,
+        };
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Hàm ccheckbox
      */
     check(input) {
-      if (this.checks[input]) {
-        this.checks[input] = false;
-      } else this.checks[input] = true;
+      try {
+        if (this.checks[input]) {
+          this.checks[input] = false;
+        } else this.checks[input] = true;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (10/8/2022)
      * Mở form thêm mới người dùng
      */
     addNewUser() {
-      this.isShowAddNew = true;
+      try {
+        this.isShowAddNew = true;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (4/8/2022)
@@ -1220,33 +1284,49 @@ export default {
      * @param {*} e
      */
     showDetail(e) {
-      this.isShowDetail = true;
-      this.dataImg = e.data;
+      try {
+        this.isShowDetail = true;
+        this.dataImg = e.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Nút đóng form chỉnh sửa cột
      */
     closeCustomColumn() {
-      this.isCustomCol = false;
+      try {
+        this.isCustomCol = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Nút mở form chỉnh sửa cột
      */
     visiblePopup() {
-      this.isCustomCol = true;
-      this.checks = JSON.parse(JSON.stringify(this.isVisible));
+      try {
+        this.isCustomCol = true;
+        this.checks = JSON.parse(JSON.stringify(this.isVisible));
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (11/8/2022)
      * Nút mở form chỉnh sửa vai trò
      */
     editUser(event, data) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.isShowEdit = true;
-      this.userSelected = data.data;
+      try {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isShowEdit = true;
+        this.userSelected = data.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
     reload() {
       try {

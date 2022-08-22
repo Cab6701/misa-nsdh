@@ -19,18 +19,26 @@
               ms-popup--close-root
             "
           >
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                ms-popup--close
-                btn-icon-1
-              "
-              @click="closeAddNew"
+            <el-tooltip
+              class="box-item"
+              effect="dark"
+              content="Đóng"
+              placement="bottom"
+              hide-after="0"
             >
-              <i class="ms-icon notranslate icon-scale mi-close-2"></i>
-            </div>
+              <div
+                class="
+                  flex
+                  items-center
+                  justify-center
+                  ms-popup--close
+                  btn-icon-1
+                "
+                @click="closeAddNew"
+              >
+                <i class="ms-icon notranslate icon-scale mi-close-2"></i>
+              </div>
+            </el-tooltip>
           </div>
         </header>
       </div>
@@ -137,7 +145,7 @@
                           <div class="style-button">
                             <div class="button-comand-wrap">
                               <div
-                                class="icon-delete-custom icon-hidden "
+                                class="icon-delete-custom icon-hidden"
                                 @click="deleteRow(index)"
                               ></div>
                             </div>
@@ -163,18 +171,34 @@
       </div>
       <div class="ms-popup--footer borderFooter">
         <div class="flex">
-          <MsButton
-            :styleButton="'btn-cancel m-r-12 '"
-            :msButtonText="'Huỷ'"
-            :isShowIcon="false"
-            @click="closeAddNew"
-          />
-          <MsButton
-            :styleButton="'ms-button-primary'"
-            :msButtonText="'Lưu'"
-            :isShowIcon="false"
-            @click="btnaddNew"
-          />
+          <el-tooltip
+            class="box-item"
+            effect="dark"
+            content="Huỷ"
+            placement="bottom"
+            hide-after="0"
+          >
+            <MsButton
+              :styleButton="'btn-cancel m-r-12 '"
+              :msButtonText="'Huỷ'"
+              :isShowIcon="false"
+              @click="closeAddNew"
+            />
+          </el-tooltip>
+          <el-tooltip
+            class="box-item"
+            effect="dark"
+            content="Lưu"
+            placement="bottom"
+            hide-after="0"
+          >
+            <MsButton
+              :styleButton="'ms-button-primary'"
+              :msButtonText="'Lưu'"
+              :isShowIcon="false"
+              @click="btnaddNew"
+            />
+          </el-tooltip>
         </div>
       </div>
     </div>
@@ -211,17 +235,21 @@ export default {
       ],
       roleArr: [],
       listUser: [],
-      newCode:0,
+      newCode: 0,
     };
   },
   methods: {
     /**
      * Author: THBAC (19/8/2022)
      * Xoá dòng
-     * @param {*} index 
+     * @param {*} index
      */
-    deleteRow(index){
-        this.listUser.splice(index,1);
+    deleteRow(index) {
+      try {
+        this.listUser.splice(index, 1);
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (18/8/2022)
@@ -245,33 +273,41 @@ export default {
      * Nút thêm dòng mới
      */
     addRow() {
-      var userAdd = {};
-      userAdd.roleID = [];
-      userAdd.userCode = "";
-      userAdd.userName = "";
-      userAdd.departmentID = "";
-      userAdd.positionID = "";
-      userAdd.email = "";
-      userAdd.status = null;
+      try {
+        var userAdd = {};
+        userAdd.roleID = [];
+        userAdd.userCode = "";
+        userAdd.userName = "";
+        userAdd.departmentID = "";
+        userAdd.positionID = "";
+        userAdd.email = "";
+        userAdd.status = null;
 
-      this.listUser.push(userAdd);
-
+        this.listUser.push(userAdd);
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (10/8/2022)
      * Đóng form thêm mới nhân viên
      */
     closeAddNew() {
-      this.$emit("CloseAddNewPopup", false);
+      try {
+        this.$emit("CloseAddNewPopup", false);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   async created() {
     var me = this;
-    await axios.get("https://localhost:7256/api/v1/User/newUserCode")
-    .then(function(res){
-      me.newCode=res.data;
-      console.log(res);
-    })
+    await axios
+      .get("https://localhost:7256/api/v1/User/newUserCode")
+      .then(function (res) {
+        me.newCode = res.data;
+        console.log(res);
+      });
     this.$nextTick(() => this.$refs.userCodeRef[0].focus());
 
     var userAdd = {};

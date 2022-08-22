@@ -13,6 +13,10 @@ export default {
     };
   },
   methods: {
+    /**
+     * Author: THBAC (15/8/2022)
+     * Hàm chia tên thành từng chữ
+     */
     splitSpace() {
       if (this.username) {
         const s = this.username;

@@ -4,9 +4,7 @@
       <div class="container">
         <div class="content-user">
           <div class="ms-icon-container" @click="ClosePopupDetail"></div>
-          <div
-            class="ms-row content-detail"
-          >
+          <div class="ms-row content-detail">
             <div class="ms-col col-16">
               <div class="">
                 <ProfileImg
@@ -48,60 +46,42 @@
             </div>
           </div>
           <div class="body-preview">
-            <div class="font-20 bold m-t-20">
-              THÔNG TIN CÔNG VIỆC
-            </div>
-            <div
-              class="ms-row body-detail"
-            >
-              <div class="ms-col col-29" >
+            <div class="font-20 bold m-t-20">THÔNG TIN CÔNG VIỆC</div>
+            <div class="ms-row body-detail">
+              <div class="ms-col col-29">
                 <div class="bold">Mã nhân viên</div>
               </div>
-              <div class="ms-col col-50 ">
-                <div
-                  class="border-detail"
-                >
+              <div class="ms-col col-50">
+                <div class="border-detail">
                   {{ this.dataImg.userCode }}
                 </div>
               </div>
             </div>
-            <div
-              class="ms-row body-detail"
-            >
-              <div class="ms-col col-29 ">
+            <div class="ms-row body-detail">
+              <div class="ms-col col-29">
                 <div class="bold">Phòng ban</div>
               </div>
               <div class="ms-col col-50">
-                <div
-                  class="border-detail"
-                >
+                <div class="border-detail">
                   {{ this.dataImg.departmentName }}
                 </div>
               </div>
             </div>
-            <div
-              class="ms-row body-detail-1"
-            >
-              <div class="ms-col col-29" >
+            <div class="ms-row body-detail-1">
+              <div class="ms-col col-29">
                 <div class="bold">Vị trí công việc</div>
               </div>
               <div class="ms-col col-20">
-                <div
-                  class="border-detail"
-                >
+                <div class="border-detail">
                   {{ this.dataImg.positionName }}
                 </div>
               </div>
             </div>
-            <div class="font-20 bold m-t-20">
-              THÔNG TIN PHÂN QUYỀN
-            </div>
+            <div class="font-20 bold m-t-20">THÔNG TIN PHÂN QUYỀN</div>
             <div class="w-full grid-paging m-t-20">
               <div class="grid-container">
                 <div id="datagrid" class="h-full">
-                  <div class="role-detail text-bold">
-                    Vai trò
-                  </div>
+                  <div class="role-detail text-bold">Vai trò</div>
                   <div
                     class="role-detail role-detail-child"
                     v-for="role in roleArray"
@@ -136,7 +116,7 @@ export default {
     /**
      * Author: THBAC (4/8/2022)
      * Đóng form Edit
-     * @param {*} check 
+     * @param {*} check
      */
     closeEdit(check) {
       try {
@@ -144,63 +124,72 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      
     },
     /**
      * Author: THBAC (4/8/2022)
      * chuyển đổi tên trạng thái
-     * @param {*} status 
+     * @param {*} status
      */
     convertStatus(status) {
       try {
         if (status == Benum.Status.Working) return "Đang hoạt động";
-      if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
-      if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
-      if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
+        if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
+        if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
+        if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
       } catch (error) {
         console.log(error);
       }
-      
     },
     /**
      * Author: THBAC (4/8/2022)
      * chuyển đổi màu trạng thái
-     * @param {*} value 
+     * @param {*} value
      */
     bgStatus(value) {
       try {
         return {
-        working: value == Benum.Status.Working,
-        wcf: value == Benum.Status.WConfirm,
-        notactive: value == Benum.Status.NotActive,
-        deactive: value == Benum.Status.DeActivation,
-      };
+          working: value == Benum.Status.Working,
+          wcf: value == Benum.Status.WConfirm,
+          notactive: value == Benum.Status.NotActive,
+          deactive: value == Benum.Status.DeActivation,
+        };
       } catch (error) {
         console.log(error);
       }
-      
     },
     /**
      * Author: THBAC (4/8/2022)
      * Hàm đóng form chi tiết người dùng
      */
     ClosePopupDetail() {
-      this.$emit("CloseDialog", false);
+      try {
+        this.$emit("CloseDialog", false);
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (4/8/2022)
      * Nút cập nhật
      */
     btnUpdateDetail() {
-      this.isShowEdit = true;
+      try {
+        this.isShowEdit = true;
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (4/8/2022)
      * Hiển thị form xoá
      */
     btnDeleteDetail() {
-      this.$emit("OpenDel", true);
-      this.$emit("DelUser", this.dataImg.userID, this.dataImg.userName);
+      try {
+        this.$emit("OpenDel", true);
+        this.$emit("DelUser", this.dataImg.userID, this.dataImg.userName);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   props: {
@@ -211,6 +200,5 @@ export default {
     else this.roleArray = this.dataImg.roleName.split(", ");
     console.log(this.dataImg);
   },
-
 };
 </script>
