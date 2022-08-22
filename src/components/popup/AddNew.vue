@@ -75,7 +75,7 @@
                     <th></th>
                   </thead>
                   <tbody v-for="(item, index) in this.listUser" :key="index">
-                    <tr>
+                    <tr class="trAddnew">
                       <td>{{ index + 1 }}</td>
                       <td>
                         <div
@@ -272,6 +272,7 @@ export default {
       isFail1: false,
       isFail2: false,
       isFail3: false,
+      isFail4: false,
       checkValidate: 0,
       indexArr: 0,
       message: false,
@@ -312,42 +313,80 @@ export default {
      * Hàm validate email
      */
     validateEmail(email) {
-      var regex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
-      if (email.length < 1 && this.checkValidate == 1) {
-        this.isFail1 = true;
-        return true;
-      } else {
-        if (!email.match(regex) && this.checkValidate == 1) {
+      try {
+        var regex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
+        if (email.length < 1 && this.checkValidate == 1) {
           this.isFail1 = true;
           return true;
+        } else {
+          if (!email.match(regex) && this.checkValidate == 1) {
+            this.isFail1 = true;
+            return true;
+          }
         }
+        this.isFail1 = false;
+        return false;
+      } catch (error) {
+        console.log(error);
       }
-      this.isFail1 = false;
-      return false;
     },
     /**
      * Author: THBAC (22/8/2022)
      * Hàm validate số
      */
     validateNumber(number) {
-      if (number == null && this.checkValidate == 1) {
-        this.isFail2 = true;
-        return true;
+      try {
+        if (number == null && this.checkValidate == 1) {
+          this.isFail2 = true;
+          return true;
+        }
+        this.isFail2 = false;
+        return false;
+      } catch (error) {
+        console.log(error);
       }
-      this.isFail2 = false;
-      return false;
     },
+    /**
+     * Author: THBAC (22/8/2022)
+     * Hàm validate code
+     */
+    // validateCode(index) {
+    //   try {
+    //     if (index.length < 1 && this.checkValidate == 1) {
+    //       this.isFail4 = true;
+    //       return true;
+    //     } else {
+    //       for (let i = 0; i < this.statuschos.length; i++) {
+    //         if (
+    //           index == this.statuschos[i].userCode &&
+    //           this.checkValidate == 1
+    //         ) {
+    //           this.isFail4 = true;
+    //           return true;
+    //         }
+    //       }
+    //     }
+    //     this.isFail4 = false;
+    //     return false;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
     /**
      * Author: THBAC (22/8/2022)
      * Hàm validate
      */
     validate(index) {
-      if (index.length < 1 && this.checkValidate == 1) {
-        this.isFail3 = true;
-        return true;
+      try {
+        if (index.length < 1 && this.checkValidate == 1) {
+          this.isFail3 = true;
+          return true;
+        } 
+        this.isFail3 = false;
+        return false;
+      } catch (error) {
+        console.log(error);
       }
-      this.isFail3 = false;
-      return false;
     },
     /**
      * Author: THBAC (19/8/2022)
@@ -372,7 +411,7 @@ export default {
         if (
           this.isFail3 == true ||
           this.isFail2 == true ||
-          this.isFail1 == true
+          this.isFail1 == true 
         ) {
           return;
         } else {

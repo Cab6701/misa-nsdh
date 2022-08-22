@@ -132,7 +132,7 @@ thead th {
     border: 1px solid #e7e8e9;
 }
 
-tr {
+tr.trAddnew {
     margin-bottom: 12px;
     height: 60px;
 }

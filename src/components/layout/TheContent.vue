@@ -61,7 +61,7 @@
                   </span>
                   <span class="select-box-role">
                     <div class="wrap-ms-select-box m-l-12">
-                      <DxSelectBox :items="roles" placeholder="Chọn vai trò" />
+                      <DxSelectBox :items="roles" placeholder="Chọn vai trò" v-model="filterRole" :onValueChanged="filterRoleName"/>
                     </div>
                   </span>
                   <div class="su-filter m-r-16">
@@ -921,20 +921,19 @@
 <script>
 import axios from "axios";
 import Benum from "../../js/enums.js";
+import Bresource from "../../js/resource.js";
 import MsButton from "../base/MsButton.vue";
 import TheNavbar from "./TheNavbar.vue";
 export default {
-  component: {
-    Benum,
-  },
   components: { MsButton, TheNavbar },
   data() {
     return {
-      roles: ["Tất cả", "Quản trị ứng dụng quy trình", "Nhân viên", "Quản lý"],
+      roles: ["Tất cả","Quản trị hệ thống", "Nhân viên", "Quản lý","Người giám sát"],
       isVisible: [true, true, true, true, true],
       isCustomCol: false,
       users: [],
       dataImg: {},
+      filterRole:"",
       isLoading: false,
       isShowDetail: false,
       isShowEdit: false,
@@ -955,6 +954,33 @@ export default {
     };
   },
   methods: {
+    /**
+     * Author: THBAC (22/8/82022)
+     * Lọc theo tên vai trò
+     */
+    filterRoleName(){
+      try {
+        if(this.filterRole=="Tất cả")
+        this.filterRole="";
+        var me = this;
+        me.isLoading = true;
+        axios
+          .get(
+            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterRole}`
+          )
+          .then(function (res) {
+            me.isLoading = false;
+            me.users = res.data.data;
+             me.totalPage = res.data;
+            console.log(res);
+          })
+          .catch(function (res) {
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     /**
      * Author: THBAC (22/8/82022)
      * Hàm reload sau khi update
@@ -1006,6 +1032,7 @@ export default {
           .then(function (res) {
             me.isLoading = false;
             me.users = res.data.data;
+             me.totalPage = res.data;
             console.log(res);
           })
           .catch(function (res) {
@@ -1192,10 +1219,10 @@ export default {
      */
     convertStatus(status) {
       try {
-        if (status == Benum.Status.Working) return "Đang hoạt động";
-        if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
-        if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
-        if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
+        if (status == Benum.Status.Working) return Bresource.StatusName.Working;
+        if (status == Benum.Status.WConfirm) return Bresource.StatusName.WConfirm;
+        if (status == Benum.Status.NotActive) return Bresource.StatusName.NotActive;
+        if (status == Benum.Status.DeActivation) return Bresource.StatusName.DeActivation;
       } catch (error) {
         console.log(error);
       }
