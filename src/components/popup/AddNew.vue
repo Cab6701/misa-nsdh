@@ -1,7 +1,7 @@
 <template>
   <div class="ms-component con-ms-popup center ms-popup-primary">
     <div class="ms-popup--background"></div>
-    <div class="ms-popup flex flex-col popup-s">
+    <div class="ms-popup flex flex-col popup-s h-full">
       <div class="h-53">
         <header class="ms-popup--header h-53">
           <div class="ms-popup--title">
@@ -83,6 +83,7 @@
                           class="ms-input table-input input-addnew"
                           type="text"
                           v-model="listUser[index].userCode"
+                          :class="{'error':this.validate(index)==true}"
                         />
                       </td>
                       <td>
@@ -90,6 +91,8 @@
                           class="ms-input table-input input-addnew"
                           type="text"
                           v-model="listUser[index].userName"
+                          @keyup="this.validate(index)"
+                          :class="{'error':this.validate(index)==true}"
                         />
                       </td>
                       <td>
@@ -115,6 +118,7 @@
                           class="ms-input table-input input-addnew"
                           type="text"
                           v-model="listUser[index].email"
+                          :class="{'error':this.validate(index)==true}"
                         />
                       </td>
                       <td>
@@ -210,6 +214,7 @@ export default {
   data() {
     return {
       roles: [],
+      isFail:false,
       departments: [],
       positions: [],
       statuschos: [],
@@ -240,6 +245,17 @@ export default {
   },
   methods: {
     /**
+     * Author: THBAC (22/8/2022)
+     * Hàm validate
+     */
+    validate(index){
+        if(this.listUser[index].userCode.length==0 || this.listUser[index].userName.length==0 || this.listUser[index].email.length==0){
+          this.isFail=true;
+           return true;
+        }
+        return false;
+    },
+    /**
      * Author: THBAC (19/8/2022)
      * Xoá dòng
      * @param {*} index
@@ -257,13 +273,15 @@ export default {
      */
     btnaddNew() {
       try {
-        // this.listUser.push(this.user);
-        console.log(this.user);
+        if(this.isFail==true)
+        {
+          return;
+        }else{
         axios
           .post("https://localhost:7256/api/v1/User/InsertUsers", this.listUser)
           .then(function (res) {
             console.log(res);
-          });
+          });}
       } catch (error) {
         console.log(error);
       }
@@ -274,6 +292,7 @@ export default {
      */
     addRow() {
       try {
+        
         var userAdd = {};
         userAdd.roleID = [];
         userAdd.userCode = "";
@@ -283,7 +302,12 @@ export default {
         userAdd.email = "";
         userAdd.status = null;
 
+        var array=this.listUser[this.listUser.length-1].userCode.split("-");
+        var lastCode = +array[1]+1;
+        userAdd.userCode="NV-" + lastCode;
+
         this.listUser.push(userAdd);
+
       } catch (error) {
         console.log(error);
       }
@@ -308,7 +332,7 @@ export default {
         me.newCode = res.data;
         console.log(res);
       });
-    this.$nextTick(() => this.$refs.userCodeRef[0].focus());
+    
 
     var userAdd = {};
     userAdd.roleID = [];
@@ -363,6 +387,12 @@ export default {
     for (let index = 0; index < this.roles.length; index++) {
       this.roleArr.push(this.roles[index]);
     }
+
+
+    this.$nextTick(() => this.$refs.userCodeRef[0].focus());
+  },
+  updated() {
+    
   },
 };
 </script>

@@ -1328,6 +1328,10 @@ export default {
         console.log(error);
       }
     },
+    /**
+     * Author: THBAC (11/8/2022)
+     * Hàm reload lại trang web
+     */
     reload() {
       try {
         var me = this;
@@ -1356,7 +1360,7 @@ export default {
   created() {
     try {
       var me = this;
-      me.isLoading = true;
+      me.isLoading = false;
       axios
         .get(
           `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`

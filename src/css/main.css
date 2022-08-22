@@ -13,10 +13,12 @@
 @import url(../css/base/dropdown.css);
 @import url(../css/popup/deletepopup.css);
 @import url(../css/base/bloading.css);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
 * {
     margin: 0;
     padding: 0;
     /* background: #f4f5f8; */
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -79,4 +81,8 @@ body {
  ::-webkit-scrollbar-thumb:hover {
     /* background: rgb(204, 204, 204); */
     background: #B0B1B4;
+}
+
+.error {
+    border-color: red !important;
 }
