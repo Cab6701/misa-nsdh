@@ -133,22 +133,52 @@ export default {
     };
   },
   methods: {
+    /**
+     * Author: THBAC (4/8/2022)
+     * Đóng form Edit
+     * @param {*} check 
+     */
     closeEdit(check) {
-      this.isShowEdit = check;
+      try {
+        this.isShowEdit = check;
+      } catch (error) {
+        console.log(error);
+      }
+      
     },
+    /**
+     * Author: THBAC (4/8/2022)
+     * chuyển đổi tên trạng thái
+     * @param {*} status 
+     */
     convertStatus(status) {
-      if (status == Benum.Status.Working) return "Đang hoạt động";
+      try {
+        if (status == Benum.Status.Working) return "Đang hoạt động";
       if (status == Benum.Status.WConfirm) return "Chờ xác nhận";
       if (status == Benum.Status.NotActive) return "Chưa kích hoạt";
       if (status == Benum.Status.DeActivation) return "Ngừng kích hoạt";
+      } catch (error) {
+        console.log(error);
+      }
+      
     },
+    /**
+     * Author: THBAC (4/8/2022)
+     * chuyển đổi màu trạng thái
+     * @param {*} value 
+     */
     bgStatus(value) {
-      return {
+      try {
+        return {
         working: value == Benum.Status.Working,
         wcf: value == Benum.Status.WConfirm,
         notactive: value == Benum.Status.NotActive,
         deactive: value == Benum.Status.DeActivation,
       };
+      } catch (error) {
+        console.log(error);
+      }
+      
     },
     /**
      * Author: THBAC (4/8/2022)
@@ -164,6 +194,10 @@ export default {
     btnUpdateDetail() {
       this.isShowEdit = true;
     },
+    /**
+     * Author: THBAC (4/8/2022)
+     * Hiển thị form xoá
+     */
     btnDeleteDetail() {
       this.$emit("OpenDel", true);
       this.$emit("DelUser", this.dataImg.userID, this.dataImg.userName);

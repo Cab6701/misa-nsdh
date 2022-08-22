@@ -745,14 +745,17 @@
                         <div class="grid-navigation">
                           <div class="page-total flex">
                             Tổng số bản ghi:
-                            <b class="p-0-6"> {{ this.totalPage.totalRecord }}</b>
+                            <b class="p-0-6">
+                              {{ this.totalPage.totalRecord }}</b
+                            >
                           </div>
                           <div class="page-size-selector flex items-center">
                             <div class="m-r-8">Số bản ghi</div>
                           </div>
-                          <DropDown @sizeChange="sizeChange"/>
+                          <DropDown @sizeChange="sizeChange" />
                           <div class="page-info">
-                            <b>{{this.totalPage.recordStart}}</b> - <b>{{this.totalPage.recordEnd}}</b> bản ghi
+                            <b>{{ this.totalPage.recordStart }}</b> -
+                            <b>{{ this.totalPage.recordEnd }}</b> bản ghi
                           </div>
                           <div class="page-next-preview">
                             <div class="page-paging-icon ms-row m-0">
@@ -795,7 +798,7 @@
                                     btn-icon-1
                                   "
                                   @click="nextPage"
-                                  :class="{ 'opacity-05': this.isEnd == true}"
+                                  :class="{ 'opacity-05': this.isEnd == true }"
                                 >
                                   <i class="mi-chevron-right"></i>
                                 </div>
@@ -826,6 +829,7 @@
   <EditPopup
     v-if="isShowEdit"
     @CloseEditPopup="showEditPopup"
+    @updatedUser="updatedUser"
     :userSelected="userSelected"
   />
   <AddNew v-if="isShowAddNew" @CloseAddNewPopup="showAddNew" />
@@ -926,34 +930,50 @@ export default {
       idDel: "",
       checks: [false, false, false, false, false],
       pageIndex: 1,
-      pageSize: 20,
+      pageSize: 15,
       filterString: "",
       totalPage: 0,
       userSelected: {},
-      pagingData:{},
-      isEnd:false,
+      pagingData: {},
+      isEnd: false,
     };
   },
   methods: {
     /**
+     * Author: THBAC (22/8/82022)
+     * Hàm reload sau khi update
+     * @param {*} isSuccess
+     */
+    updatedUser(isSuccess) {
+      try {
+        if (isSuccess) this.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    /**
      *  Author: THBAC (20/8/82022)
      * Thay đổi số lượng bản ghi
      */
-    async sizeChange(size){
-      var me = this;
-      this.pageSize=size;
-      await axios
-        .get(
-          `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
-        )
-        .then(function (res) {
-          me.isLoading = false;
-          me.users = res.data.data;
-          me.totalPage = res.data;
-        })
-        .catch(function (res) {
-          console.log(res);
-        });
+    async sizeChange(size) {
+      try {
+        var me = this;
+        this.pageSize = size;
+        await axios
+          .get(
+            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+          )
+          .then(function (res) {
+            me.isLoading = false;
+            me.users = res.data.data;
+            me.totalPage = res.data;
+          })
+          .catch(function (res) {
+            console.log(res);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**
      * Author: THBAC (20/8/82022)
@@ -982,8 +1002,8 @@ export default {
     /**
      * Author: THBAC (20/8/82022)
      * Hàm gắn id và tên để hiển thị và gắn cho form xoá
-     * @param {*} id 
-     * @param {*} name 
+     * @param {*} id
+     * @param {*} name
      */
     delDetail(id, name) {
       this.idDel = id;
@@ -1034,7 +1054,7 @@ export default {
           .then(function (res) {
             me.isLoading = false;
             me.users = res.data.data;
-            me.totalPage=res.data;
+            me.totalPage = res.data;
             console.log(res);
           })
           .catch(function (res) {
@@ -1047,30 +1067,28 @@ export default {
      * Nút ấn sang trang sau
      */
     nextPage() {
-      if(this.pagingData.recordEnd>this.pagingData.totalRecord)
-      {
-          this.isEnd=true;
-          console.log(this.pagingData.recordEnd);
+      if (this.pagingData.recordEnd > this.pagingData.totalRecord) {
+        this.isEnd = true;
+        console.log(this.pagingData.recordEnd);
+      } else {
+        this.isEnd = false;
+        this.pageIndex = this.pageIndex + 1;
+        var me = this;
+        this.isLoading = true;
+        axios
+          .get(
+            `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
+          )
+          .then(function (res) {
+            me.isLoading = false;
+            me.totalPage = res.data;
+            me.users = res.data.data;
+            console.log(res);
+          })
+          .catch(function (res) {
+            console.log(res);
+          });
       }
-      else{
-      this.isEnd=false;
-      this.pageIndex = this.pageIndex + 1;
-      var me = this;
-      this.isLoading = true;
-      axios
-        .get(
-          `https://localhost:7256/api/v1/User/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&filter=${this.filterString}`
-        )
-        .then(function (res) {
-          me.isLoading = false;
-          me.totalPage=res.data;
-          me.users = res.data.data;
-          console.log(res);
-        })
-        .catch(function (res) {
-          console.log(res);
-        });
-        }
     },
     /**
      * Author: THBAC (17/8/2022)

@@ -108,6 +108,7 @@
             :styleButton="'ms-button-primary'"
             :msButtonText="'Lưu'"
             :isShowIcon="false"
+            @click="btnEdit"
           />
         </div>
       </div>
@@ -124,16 +125,50 @@ export default {
       selectedUser: {},
       roleNameArr: [],
       role: [],
+      userRole: [
+        {
+          roleID: "",
+          userID: "",
+          status: 0,
+        },
+        {
+          roleID: "",
+          userID: "",
+          status: 0,
+        },
+        {
+          roleID: "",
+          userID: "",
+          status: 0,
+        },
+        {
+          roleID: "",
+          userID: "",
+          status: 0,
+        },
+      ],
     };
   },
   components: { MsButton },
   methods: {
+    /**
+     * Author: THBAC (22/8/2022)
+     * Nút lưu để cập nhật vai trò người dùng
+     */
     btnEdit() {
+      var me = this;
       axios.put(
         "https://localhost:7256/api/v1/UserRole/UpdateUserRole",
-        this.role
-      );
+        this.userRole
+      )
+      .then(function(res){
+          
+          me.$emit("CloseEditPopup", false);
+          me.$emit("updatedUser",true);
+          console.log(res);
+      });
     },
+    
     /**
      * Author: THBAC (11/8/2022)
      * Hàm ccheckbox
@@ -141,7 +176,12 @@ export default {
     check(input) {
       if (this.checks[input]) {
         this.checks[input] = false;
-      } else this.checks[input] = true;
+        this.userRole[input].status = 2;
+      } else {
+        this.checks[input] = true;
+        this.userRole[input].status = 1;
+      }
+      console.log(this.userRole);
     },
     /**
      * Author: THBAC (11/8/2022)
@@ -163,9 +203,14 @@ export default {
         for (let index = 0; index < this.role.length; index++) {
           if (this.roleNameArr.includes(this.role[index].roleName)) {
             this.checks.push(true);
-          } else this.checks.push(false);
+            this.userRole[index].status = 3;
+          } else {
+            this.checks.push(false);
+            this.userRole[index].status = 3;
+          }
         }
       }
+      console.log(this.userRole);
     },
   },
   props: { userSelected: {} },
@@ -182,8 +227,16 @@ export default {
       console.log(error);
     }
     this.selectedUser = this.userSelected;
+
+    // THêm userID và roleID vào hàm userRole
+    for (let index = 0; index < this.userRole.length; index++) {
+      this.userRole[index].userID = this.selectedUser.userID;
+      this.userRole[index].roleID = this.role[index].roleID;
+    }
+
+    //Tích checkbox theo vai trò được chọn
     this.convertRoleName(this.userSelected.roleName);
-    console.log(this.userSelected.roleName);
+  
   },
 };
 </script>

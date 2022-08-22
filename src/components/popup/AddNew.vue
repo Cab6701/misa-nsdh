@@ -313,15 +313,17 @@ export default {
       console.log(res);
     });
 
-
+    // Thêm dữ liệu vào bảng department
     for (let index = 0; index < this.departments.length; index++) {
       this.departmentArr.push(this.departments[index]);
     }
 
+    // Thêm dữ liệu vào bảng positions
     for (let index = 0; index < this.positions.length; index++) {
       this.positionArr.push(this.positions[index]);
     }
 
+    // Thêm dữ liệu vào bảng roles
     for (let index = 0; index < this.roles.length; index++) {
       this.roleArr.push(this.roles[index]);
     }
