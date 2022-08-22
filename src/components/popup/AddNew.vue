@@ -82,67 +82,91 @@
                           ref="userCodeRef"
                           class="ms-input table-input input-addnew"
                           type="text"
+                          maxlength="20"
                           v-model="listUser[index].userCode"
-                          :class="{'error':this.validate(index)==true}"
+                          :class="{ error: validate(listUser[index].userCode) }"
                         />
                       </td>
                       <td>
                         <input
                           class="ms-input table-input input-addnew"
                           type="text"
+                          maxlength="100"
                           v-model="listUser[index].userName"
-                          @keyup="this.validate(index)"
-                          :class="{'error':this.validate(index)==true}"
+                          :class="{ error: validate(listUser[index].userName) }"
                         />
                       </td>
                       <td>
-                        <DxSelectBox
-                          placeholder="Chọn phòng ban"
-                          :data-source="departmentArr"
-                          display-expr="departmentName"
-                          value-expr="departmentID"
-                          v-model="listUser[index].departmentID"
-                        />
+                        <div
+                          :class="{
+                            error: validate(listUser[index].departmentID),
+                          }"
+                        >
+                          <DxSelectBox
+                            placeholder="Chọn phòng ban"
+                            :data-source="departmentArr"
+                            display-expr="departmentName"
+                            value-expr="departmentID"
+                            v-model="listUser[index].departmentID"
+                          />
+                        </div>
                       </td>
                       <td>
-                        <DxSelectBox
-                          placeholder="Chọn vị trí"
-                          :data-source="positionArr"
-                          display-expr="positionName"
-                          value-expr="positionID"
-                          v-model="listUser[index].positionID"
-                        />
+                        <div
+                          :class="{
+                            error: validate(listUser[index].positionID),
+                          }"
+                        >
+                          <DxSelectBox
+                            placeholder="Chọn vị trí"
+                            :data-source="positionArr"
+                            display-expr="positionName"
+                            value-expr="positionID"
+                            v-model="listUser[index].positionID"
+                          />
+                        </div>
                       </td>
                       <td>
                         <input
                           class="ms-input table-input input-addnew"
                           type="text"
+                          maxlength="100"
                           v-model="listUser[index].email"
-                          :class="{'error':this.validate(index)==true}"
+                          :class="{ error: validateEmail(listUser[index].email) }"
                         />
                       </td>
                       <td>
-                        <DxTagBox
-                          :search-enabled="true"
-                          height="36px"
-                          width="340px"
-                          placeholder="Chọn vai trò"
-                          :accept-custom-value="false"
-                          :multiline="false"
-                          :data-source="roleArr"
-                          display-expr="roleName"
-                          value-expr="roleID"
-                          v-model="listUser[index].roleID"
-                        />
+                        <div
+                          :class="{ error: validate(listUser[index].roleID) }"
+                        >
+                          <DxTagBox
+                            :search-enabled="true"
+                            height="36px"
+                            width="340px"
+                            placeholder="Chọn vai trò"
+                            :accept-custom-value="false"
+                            :multiline="false"
+                            :data-source="roleArr"
+                            display-expr="roleName"
+                            value-expr="roleID"
+                            v-model="listUser[index].roleID"
+                          />
+                        </div>
                       </td>
                       <td>
-                        <DxSelectBox
-                          placeholder="Chọn trạng thái"
-                          :data-source="statusArr"
-                          display-expr="statusName"
-                          value-expr="ID"
-                          v-model="listUser[index].status"
-                        />
+                        <div
+                          :class="{
+                            error: validateNumber(listUser[index].status),
+                          }"
+                        >
+                          <DxSelectBox
+                            placeholder="Chọn trạng thái"
+                            :data-source="statusArr"
+                            display-expr="statusName"
+                            value-expr="ID"
+                            v-model="listUser[index].status"
+                          />
+                        </div>
                       </td>
                       <td class="sticky-right">
                         <div class="flex justify-flexend m-8 sticky-right">
@@ -214,7 +238,12 @@ export default {
   data() {
     return {
       roles: [],
-      isFail:false,
+      isFail: false,
+      checkValidate: 0,
+      indexArr: 0,
+      validCode: false,
+      validName: false,
+      validEmail: false,
       departments: [],
       positions: [],
       statuschos: [],
@@ -246,14 +275,32 @@ export default {
   methods: {
     /**
      * Author: THBAC (22/8/2022)
+     * Hàm validate email
+     */
+    validateEmail(email) {
+      var regex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
+      if (email.length<1 && !email.match(regex) && this.checkValidate == 1) {
+        return true;
+      }
+      return false;
+    },
+    /**
+     * Author: THBAC (22/8/2022)
+     * Hàm validate số
+     */
+    validateNumber(number) {
+      if (number == null && this.checkValidate == 1) return true;
+      return false;
+    },
+    /**
+     * Author: THBAC (22/8/2022)
      * Hàm validate
      */
-    validate(index){
-        if(this.listUser[index].userCode.length==0 || this.listUser[index].userName.length==0 || this.listUser[index].email.length==0){
-          this.isFail=true;
-           return true;
-        }
-        return false;
+    validate(index) {
+      if (index.length < 1 && this.checkValidate == 1) {
+        return true;
+      }
+      return false;
     },
     /**
      * Author: THBAC (19/8/2022)
@@ -273,15 +320,16 @@ export default {
      */
     btnaddNew() {
       try {
-        if(this.isFail==true)
-        {
-          return;
-        }else{
+        this.checkValidate = 1;
+        // if(this.validate()==false && this.validateNumber()==false)
+        // {
+        //   return;
+        // }else{
         axios
           .post("https://localhost:7256/api/v1/User/InsertUsers", this.listUser)
           .then(function (res) {
             console.log(res);
-          });}
+          });
       } catch (error) {
         console.log(error);
       }
@@ -292,7 +340,6 @@ export default {
      */
     addRow() {
       try {
-        
         var userAdd = {};
         userAdd.roleID = [];
         userAdd.userCode = "";
@@ -302,12 +349,11 @@ export default {
         userAdd.email = "";
         userAdd.status = null;
 
-        var array=this.listUser[this.listUser.length-1].userCode.split("-");
-        var lastCode = +array[1]+1;
-        userAdd.userCode="NV-" + lastCode;
+        var array = this.listUser[this.listUser.length - 1].userCode.split("-");
+        var lastCode = +array[1] + 1;
+        userAdd.userCode = "NV-" + lastCode;
 
         this.listUser.push(userAdd);
-
       } catch (error) {
         console.log(error);
       }
@@ -326,13 +372,13 @@ export default {
   },
   async created() {
     var me = this;
+    // Lấy mã mới
     await axios
       .get("https://localhost:7256/api/v1/User/newUserCode")
       .then(function (res) {
         me.newCode = res.data;
         console.log(res);
       });
-    
 
     var userAdd = {};
     userAdd.roleID = [];
@@ -388,11 +434,7 @@ export default {
       this.roleArr.push(this.roles[index]);
     }
 
-
     this.$nextTick(() => this.$refs.userCodeRef[0].focus());
-  },
-  updated() {
-    
   },
 };
 </script>

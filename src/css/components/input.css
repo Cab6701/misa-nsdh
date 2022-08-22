@@ -17,11 +17,11 @@
 }
 
 .ms-input:hover {
-    border: 1px solid #20a3ec;
+    border: 1px solid #02a3ec;
 }
 
 .ms-input:focus {
-    border: 1px solid #20a3ec!important;
+    border: 1px solid #02a3ec!important;
     outline: none;
 }
 

@@ -186,3 +186,7 @@ tr:hover {
     right: 0;
     z-index: 200;
 }
+
+.dx-texteditor.dx-state-focused.dx-editor-outlined {
+    border-color: #02a3ec;
+}

@@ -86,3 +86,13 @@ body {
 .error {
     border-color: red !important;
 }
+
+.error:focus {
+    border-color: red !important;
+}
+
+.error .dx-texteditor.dx-editor-outlined {
+    background: #fff;
+    border: 1px solid red;
+    border-radius: 4px;
+}
